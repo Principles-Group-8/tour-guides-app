@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## The Tour Guides Scheduling App
 
-Things you may want to cover:
+<hr>
 
-* Ruby version
+This app will be responsible for scheduling tours for Vanderbilt.
 
-* System dependencies
+Trello: https://trello.com/61532f9e6d87e52749102549
 
-* Configuration
+We will be using the Ruby on Rails web framework with SQLite for 
+development and PostgreSQL for production.
 
-* Database creation
+Sprint 1 (Oct 12, 2021): Basic functionality and user logon
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run development server:
+    $ rails server
