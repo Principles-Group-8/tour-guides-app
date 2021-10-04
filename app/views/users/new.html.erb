@@ -1,0 +1,10 @@
+<h1>Sign Up</h1>
+<%= form_with model: @user, url: signup_path do |f| %>
+    <%= f.label 'email' %><br>
+    <%= f.text_field :email %><br>
+    <%= f.label 'password' %><br>
+    <%= f.password_field :password %><br>
+    <%= f.label 'password_confirmation' %><br>
+    <%= f.password_field :password_confirmation %><br><br>
+    <%= f.submit 'Sign Up' %>
+<% end %>
