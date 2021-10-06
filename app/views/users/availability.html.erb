@@ -13,125 +13,26 @@
             </tr>
         </thead>
         <tbody>
-            <td id="mon">
-                <input type="checkbox" name="mon_9" value="yes">9 a.m. - 10 a.m.
+            <% days = ["mon", "tues", "wed", "thur", "fri", "sat", "sun"] %>
+            <% days.each { |day|%>
+            <td id=<%= day%>>
+                <input type="checkbox" name="<%= day%>_9" value="yes">9 a.m. - 10 a.m.
                 <br>
-                <input type="checkbox" name="mon_10" value="yes">10 a.m. - 11 a.m.
+                <input type="checkbox" name="<%= day%>_10" value="yes">10 a.m. - 11 a.m.
                 <br>
-                <input type="checkbox" name="mon_11" value="yes">11 a.m. - 12 p.m.
+                <input type="checkbox" name="<%= day%>_11" value="yes">11 a.m. - 12 p.m.
                 <br>
-                <input type="checkbox" name="mon_12" value="yes">12 p.m. - 1 p.m.
+                <input type="checkbox" name="<%= day%>_12" value="yes">12 p.m. - 1 p.m.
                 <br>
-                <input type="checkbox" name="mon_1" value="yes">1 p.m. - 2 p.m.
+                <input type="checkbox" name="<%= day%>_1" value="yes">1 p.m. - 2 p.m.
                 <br>
-                <input type="checkbox" name="mon_2" value="yes">2 p.m. - 3 p.m.
+                <input type="checkbox" name="<%= day%>_2" value="yes">2 p.m. - 3 p.m.
                 <br>
-                <input type="checkbox" name="mon_3" value="yes">3 p.m. - 4 p.m.
+                <input type="checkbox" name="<%= day%>_3" value="yes">3 p.m. - 4 p.m.
                 <br>
-                <input type="checkbox" name="mon_4" value="yes">4 p.m. - 5 p.m.
+                <input type="checkbox" name="<%= day%>_4" value="yes">4 p.m. - 5 p.m.
             </td>
-            <td id="tues">
-                <input type="checkbox" name="tues_9" value="yes">9 a.m. - 10 a.m.
-                <br>
-                <input type="checkbox" name="tues_10" value="yes">10 a.m. - 11 a.m.
-                <br>
-                <input type="checkbox" name="tues_11" value="yes">11 a.m. - 12 p.m.
-                <br>
-                <input type="checkbox" name="tues_12" value="yes">12 p.m. - 1 p.m.
-                <br>
-                <input type="checkbox" name="tues_1" value="yes">1 p.m. - 2 p.m.
-                <br>
-                <input type="checkbox" name="tues_2" value="yes">2 p.m. - 3 p.m.
-                <br>
-                <input type="checkbox" name="tues_3" value="yes">3 p.m. - 4 p.m.
-                <br>
-                <input type="checkbox" name="tues_4" value="yes">4 p.m. - 5 p.m.
-            </td>
-            <td id="wed">
-                <input type="checkbox" name="wed_9" value="yes">9 a.m. - 10 a.m.
-                <br>
-                <input type="checkbox" name="wed_10" value="yes">10 a.m. - 11 a.m.
-                <br>
-                <input type="checkbox" name="wed_11" value="yes">11 a.m. - 12 p.m.
-                <br>
-                <input type="checkbox" name="wed_12" value="yes">12 p.m. - 1 p.m.
-                <br>
-                <input type="checkbox" name="wed_1" value="yes">1 p.m. - 2 p.m.
-                <br>
-                <input type="checkbox" name="wed_2" value="yes">2 p.m. - 3 p.m.
-                <br>
-                <input type="checkbox" name="wed_3" value="yes">3 p.m. - 4 p.m.
-                <br>
-                <input type="checkbox" name="wed_4" value="yes">4 p.m. - 5 p.m.
-            </td>
-            <td id="thur">
-                <input type="checkbox" name="thur_9" value="yes">9 a.m. - 10 a.m.
-                <br>
-                <input type="checkbox" name="thur_10" value="yes">10 a.m. - 11 a.m.
-                <br>
-                <input type="checkbox" name="thur_11" value="yes">11 a.m. - 12 p.m.
-                <br>
-                <input type="checkbox" name="thur_12" value="yes">12 p.m. - 1 p.m.
-                <br>
-                <input type="checkbox" name="thur_1" value="yes">1 p.m. - 2 p.m.
-                <br>
-                <input type="checkbox" name="thur_2" value="yes">2 p.m. - 3 p.m.
-                <br>
-                <input type="checkbox" name="thur_3" value="yes">3 p.m. - 4 p.m.
-                <br>
-                <input type="checkbox" name="thur_4" value="yes">4 p.m. - 5 p.m.
-            </td>
-            <td id="fri">
-                <input type="checkbox" name="fri_9" value="yes">9 a.m. - 10 a.m.
-                <br>
-                <input type="checkbox" name="fri_10" value="yes">10 a.m. - 11 a.m.
-                <br>
-                <input type="checkbox" name="fri_11" value="yes">11 a.m. - 12 p.m.
-                <br>
-                <input type="checkbox" name="fri_12" value="yes">12 p.m. - 1 p.m.
-                <br>
-                <input type="checkbox" name="fri_1" value="yes">1 p.m. - 2 p.m.
-                <br>
-                <input type="checkbox" name="fri_2" value="yes">2 p.m. - 3 p.m.
-                <br>
-                <input type="checkbox" name="fri_3" value="yes">3 p.m. - 4 p.m.
-                <br>
-                <input type="checkbox" name="fri_4" value="yes">4 p.m. - 5 p.m.
-            </td>
-            <td id="sat">
-                <input type="checkbox" name="sat_9" value="yes">9 a.m. - 10 a.m.
-                <br>
-                <input type="checkbox" name="sat_10" value="yes">10 a.m. - 11 a.m.
-                <br>
-                <input type="checkbox" name="sat_11" value="yes">11 a.m. - 12 p.m.
-                <br>
-                <input type="checkbox" name="sat_12" value="yes">12 p.m. - 1 p.m.
-                <br>
-                <input type="checkbox" name="sat_1" value="yes">1 p.m. - 2 p.m.
-                <br>
-                <input type="checkbox" name="sat_2" value="yes">2 p.m. - 3 p.m.
-                <br>
-                <input type="checkbox" name="sat_3" value="yes">3 p.m. - 4 p.m.
-                <br>
-                <input type="checkbox" name="sat_4" value="yes">4 p.m. - 5 p.m.
-            </td>
-            <td id="sun">
-                <input type="checkbox" name="sun_9" value="yes">9 a.m. - 10 a.m.
-                <br>
-                <input type="checkbox" name="sun_10" value="yes">10 a.m. - 11 a.m.
-                <br>
-                <input type="checkbox" name="sun_11" value="yes">11 a.m. - 12 p.m.
-                <br>
-                <input type="checkbox" name="sun_12" value="yes">12 p.m. - 1 p.m.
-                <br>
-                <input type="checkbox" name="sun_1" value="yes">1 p.m. - 2 p.m.
-                <br>
-                <input type="checkbox" name="sun_2" value="yes">2 p.m. - 3 p.m.
-                <br>
-                <input type="checkbox" name="sun_3" value="yes">3 p.m. - 4 p.m.
-                <br>
-                <input type="checkbox" name="sun_4" value="yes">4 p.m. - 5 p.m.
-            </td>
+            <% } %>
         </tbody>
     </table>
     <input type="submit" value="Submit"/>
