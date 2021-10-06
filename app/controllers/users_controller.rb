@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def logout
-    session.
+    session.delete(:user_id)
   end
 
   def list
