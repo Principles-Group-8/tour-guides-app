@@ -12,6 +12,16 @@ class UsersController < ApplicationController
   def login
   end
 
+  def logout
+    session.
+  end
+
+  def list
+    if !session[:user_id] || !User.find(session[:user_id]).administrator
+      redirect_to root_path
+    end
+  end
+
   def login_submit
     @user = User.find_by_email(params[:email])
     if !!@user && @user.authenticate(params[:password])

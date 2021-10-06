@@ -6,4 +6,9 @@ module ApplicationHelper
     def current_user
     @user ||= User.find(session[:user_id]) if !!session[:user_id]
     end
+
+    def administrator?
+        current_user && current_user.administrator
+    end
+
 end
