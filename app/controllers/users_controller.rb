@@ -9,6 +9,20 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def login
+  end
+
+  def login_submit
+    @user = User.find_by_email(params[:email])
+    if !!@user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to root_path
+    else
+      flash[:error] = "Error: Incorrect username or password"
+      redirect_to login_path
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -16,6 +30,7 @@ class UsersController < ApplicationController
       flash[:success] = "Success"
       redirect_to root_path
     else
+      flash.now[:error] = "Please enter a valid email"
       render :new
     end
   end
