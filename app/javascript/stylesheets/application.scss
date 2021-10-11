@@ -1,1 +1,19 @@
-@import "bootstrap"
+@import "bootstrap";
+
+.navbar-brand {
+    height: 90px;
+    padding-left: 10px;
+}
+.navbar {
+    background-color: #D8AB4C;
+}
+.nav-item{
+    padding-right: 20px;
+}
+.nav-link{
+    color: black !important;
+    font-size: 1.8em !important;
+}
+ul.navbar-nav a:hover {
+    color: #fff !important;
+}
