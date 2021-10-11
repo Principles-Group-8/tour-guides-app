@@ -16,6 +16,13 @@
 
   <body>
     <%= render "layouts/navbar" %>
+    <div class="container">
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-<%= type %>">
+          <%= msg %>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

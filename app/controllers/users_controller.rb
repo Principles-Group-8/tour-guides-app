@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash[:error] = "Error: Incorrect username or password"
+      flash[:danger] = "Error: Incorrect username or password"
       redirect_to login_path
     end
   end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       flash[:success] = "Success"
       redirect_to root_path
     else
-      flash.now[:error] = "Please enter a valid email"
+      flash.now[:danger] = "Please enter a valid email"
       render :new
     end
   end
