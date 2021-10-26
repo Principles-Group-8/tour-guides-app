@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def availability
-    if !User.find(session[:user_id])
+    if !session[:user_id] || !User.find(session[:user_id])
       redirect_to root_path
     end
   end
