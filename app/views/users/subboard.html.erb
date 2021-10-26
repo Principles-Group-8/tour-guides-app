@@ -6,28 +6,39 @@
     <div class="row mx-5">
         <div class="col-md-3 text-center" style="background: black">
         <div class="d-flex align-items-center justify-content-center" style="height: 3em; color: white">
-        Your Tours
-        </div>
-        <br/>
-        <% cur_user.tours.each do |tour| %>
-            <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C; height: 3em">
-                <input type="checkbox"/>
-                <label><%= tour.time.strftime('%A') %>
-                <%= tour.time.month %>/<%= tour.time.day %>
-                <%= tour.time.hour %>:<%= tour.time.min %> -
-                Fill in with end time
-                </label>
+            Your Tours
             </div>
             <br/>
-        <% end %>
-        <%= submit_tag "Post Tours to Board" %>
+            <% cur_user.tours.each do |tour| %>
+                <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C; height: 3em">
+                    <input type="checkbox"/>
+                    <label><%= tour.time.strftime('%A') %>
+                    <%= tour.time.month %>/<%= tour.time.day %>
+                    <%= tour.time.hour %>:<%= tour.time.min %> -
+                    <%= tour.end_time.hour %>:<%= tour.end_time.min %>
+                    </label>
+                </div>
+                <br/>
+            <% end %>
+            <%= submit_tag "Post Tours to Board" %>
         </div>
 
         <div class="col-md-8 offset-md-1 text-center d-flex justify-content-center" style="background: black; color:white; position: relative">
             Available Tours
             <br/>
-            Fill in available tours
-            <br/>
+            <% Tour.all.each do |tour| %>
+                 <% if tour.users.size < tour.min_guides && !tour.users.member?(cur_user) %>
+                    <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C; height: 3em">
+                        <input type="checkbox"/>
+                        <label><%= tour.time.strftime('%A') %>
+                        <%= tour.time.month %>/<%= tour.time.day %>
+                        <%= tour.time.hour %>:<%= tour.time.min %> -
+                        <%= tour.end_time.hour %>:<%= tour.end_time.min %>
+                        </label>
+                    </div>
+                    <br/>
+                 <% end %>
+            <% end %>
             <div style="position: absolute; bottom: 0px">
                 <%= submit_tag "Claim Tours from Board" %>
             </div>
