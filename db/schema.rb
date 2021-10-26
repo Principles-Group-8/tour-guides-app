@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_06_222048) do
+ActiveRecord::Schema.define(version: 2021_10_26_035106) do
 
   create_table "tours", force: :cascade do |t|
     t.datetime "time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "end_time"
+    t.datetime "min_guides", null: false
   end
 
   create_table "tours_users", id: false, force: :cascade do |t|
@@ -29,6 +31,135 @@ ActiveRecord::Schema.define(version: 2021_10_06_222048) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "administrator", default: false, null: false
+    t.boolean "mon_9", default: false, null: false
+    t.boolean "mon_9:30", default: false, null: false
+    t.boolean "mon_10", default: false, null: false
+    t.boolean "mon_10:30", default: false, null: false
+    t.boolean "mon_11", default: false, null: false
+    t.boolean "mon_11:30", default: false, null: false
+    t.boolean "mon_12", default: false, null: false
+    t.boolean "mon_12:30", default: false, null: false
+    t.boolean "mon_1", default: false, null: false
+    t.boolean "mon_1:30", default: false, null: false
+    t.boolean "mon_2", default: false, null: false
+    t.boolean "mon_2:30", default: false, null: false
+    t.boolean "mon_3", default: false, null: false
+    t.boolean "mon_3:30", default: false, null: false
+    t.boolean "mon_4", default: false, null: false
+    t.boolean "mon_4:30", default: false, null: false
+    t.boolean "mon_5", default: false, null: false
+    t.boolean "mon_5:30", default: false, null: false
+    t.boolean "tues_9", default: false, null: false
+    t.boolean "tues_9:30", default: false, null: false
+    t.boolean "tues_10", default: false, null: false
+    t.boolean "tues_10:30", default: false, null: false
+    t.boolean "tues_11", default: false, null: false
+    t.boolean "tues_11:30", default: false, null: false
+    t.boolean "tues_12", default: false, null: false
+    t.boolean "tues_12:30", default: false, null: false
+    t.boolean "tues_1", default: false, null: false
+    t.boolean "tues_1:30", default: false, null: false
+    t.boolean "tues_2", default: false, null: false
+    t.boolean "tues_2:30", default: false, null: false
+    t.boolean "tues_3", default: false, null: false
+    t.boolean "tues_3:30", default: false, null: false
+    t.boolean "tues_4", default: false, null: false
+    t.boolean "tues_4:30", default: false, null: false
+    t.boolean "tues_5", default: false, null: false
+    t.boolean "tues_5:30", default: false, null: false
+    t.boolean "wed_9", default: false, null: false
+    t.boolean "wed_9:30", default: false, null: false
+    t.boolean "wed_10", default: false, null: false
+    t.boolean "wed_10:30", default: false, null: false
+    t.boolean "wed_11", default: false, null: false
+    t.boolean "wed_11:30", default: false, null: false
+    t.boolean "wed_12", default: false, null: false
+    t.boolean "wed_12:30", default: false, null: false
+    t.boolean "wed_1", default: false, null: false
+    t.boolean "wed_1:30", default: false, null: false
+    t.boolean "wed_2", default: false, null: false
+    t.boolean "wed_2:30", default: false, null: false
+    t.boolean "wed_3", default: false, null: false
+    t.boolean "wed_3:30", default: false, null: false
+    t.boolean "wed_4", default: false, null: false
+    t.boolean "wed_4:30", default: false, null: false
+    t.boolean "wed_5", default: false, null: false
+    t.boolean "wed_5:30", default: false, null: false
+    t.boolean "thur_9", default: false, null: false
+    t.boolean "thur_9:30", default: false, null: false
+    t.boolean "thur_10", default: false, null: false
+    t.boolean "thur_10:30", default: false, null: false
+    t.boolean "thur_11", default: false, null: false
+    t.boolean "thur_11:30", default: false, null: false
+    t.boolean "thur_12", default: false, null: false
+    t.boolean "thur_12:30", default: false, null: false
+    t.boolean "thur_1", default: false, null: false
+    t.boolean "thur_1:30", default: false, null: false
+    t.boolean "thur_2", default: false, null: false
+    t.boolean "thur_2:30", default: false, null: false
+    t.boolean "thur_3", default: false, null: false
+    t.boolean "thur_3:30", default: false, null: false
+    t.boolean "thur_4", default: false, null: false
+    t.boolean "thur_4:30", default: false, null: false
+    t.boolean "thur_5", default: false, null: false
+    t.boolean "thur_5:30", default: false, null: false
+    t.boolean "fri_9", default: false, null: false
+    t.boolean "fri_9:30", default: false, null: false
+    t.boolean "fri_10", default: false, null: false
+    t.boolean "fri_10:30", default: false, null: false
+    t.boolean "fri_11", default: false, null: false
+    t.boolean "fri_11:30", default: false, null: false
+    t.boolean "fri_12", default: false, null: false
+    t.boolean "fri_12:30", default: false, null: false
+    t.boolean "fri_1", default: false, null: false
+    t.boolean "fri_1:30", default: false, null: false
+    t.boolean "fri_2", default: false, null: false
+    t.boolean "fri_2:30", default: false, null: false
+    t.boolean "fri_3", default: false, null: false
+    t.boolean "fri_3:30", default: false, null: false
+    t.boolean "fri_4", default: false, null: false
+    t.boolean "fri_4:30", default: false, null: false
+    t.boolean "fri_5", default: false, null: false
+    t.boolean "fri_5:30", default: false, null: false
+    t.boolean "sat_9", default: false, null: false
+    t.boolean "sat_9:30", default: false, null: false
+    t.boolean "sat_10", default: false, null: false
+    t.boolean "sat_10:30", default: false, null: false
+    t.boolean "sat_11", default: false, null: false
+    t.boolean "sat_11:30", default: false, null: false
+    t.boolean "sat_12", default: false, null: false
+    t.boolean "sat_12:30", default: false, null: false
+    t.boolean "sat_1", default: false, null: false
+    t.boolean "sat_1:30", default: false, null: false
+    t.boolean "sat_2", default: false, null: false
+    t.boolean "sat_2:30", default: false, null: false
+    t.boolean "sat_3", default: false, null: false
+    t.boolean "sat_3:30", default: false, null: false
+    t.boolean "sat_4", default: false, null: false
+    t.boolean "sat_4:30", default: false, null: false
+    t.boolean "sat_5", default: false, null: false
+    t.boolean "sat_5:30", default: false, null: false
+    t.boolean "sun_9", default: false, null: false
+    t.boolean "sun_9:30", default: false, null: false
+    t.boolean "sun_10", default: false, null: false
+    t.boolean "sun_10:30", default: false, null: false
+    t.boolean "sun_11", default: false, null: false
+    t.boolean "sun_11:30", default: false, null: false
+    t.boolean "sun_12", default: false, null: false
+    t.boolean "sun_12:30", default: false, null: false
+    t.boolean "sun_1", default: false, null: false
+    t.boolean "sun_1:30", default: false, null: false
+    t.boolean "sun_2", default: false, null: false
+    t.boolean "sun_2:30", default: false, null: false
+    t.boolean "sun_3", default: false, null: false
+    t.boolean "sun_3:30", default: false, null: false
+    t.boolean "sun_4", default: false, null: false
+    t.boolean "sun_4:30", default: false, null: false
+    t.boolean "sun_5", default: false, null: false
+    t.boolean "sun_5:30", default: false, null: false
+    t.string "first_name", default: "First", null: false
+    t.string "last_name", default: "Last", null: false
+    t.integer "points", default: 0, null: false
   end
 
 end
