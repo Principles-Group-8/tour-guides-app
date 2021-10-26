@@ -1,0 +1,36 @@
+<% cur_user = User.find(session[:user_id]) %>
+
+<h1 class="text-center my-4">Sub Board</h1>
+
+<%= form_tag '/subboard' do %>
+    <div class="row mx-5">
+        <div class="col-md-3 text-center" style="background: black">
+        <div class="d-flex align-items-center justify-content-center" style="height: 3em; color: white">
+        Your Tours
+        </div>
+        <br/>
+        <% cur_user.tours.each do |tour| %>
+            <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C; height: 3em">
+                <input type="checkbox"/>
+                <label><%= tour.time.strftime('%A') %>
+                <%= tour.time.month %>/<%= tour.time.day %>
+                <%= tour.time.hour %>:<%= tour.time.min %> -
+                Fill in with end time
+                </label>
+            </div>
+            <br/>
+        <% end %>
+        <%= submit_tag "Post Tours to Board" %>
+        </div>
+
+        <div class="col-md-8 offset-md-1 text-center d-flex justify-content-center" style="background: black; color:white; position: relative">
+            Available Tours
+            <br/>
+            Fill in available tours
+            <br/>
+            <div style="position: absolute; bottom: 0px">
+                <%= submit_tag "Claim Tours from Board" %>
+            </div>
+        </div>
+    </div>
+<% end %>

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'users/availability'
   post 'users/availability', to: 'users#availability_post'
   get 'users/profile'
+
+  get 'users/subboard'
   get 'users/points'
   get 'users/check_in'
 
