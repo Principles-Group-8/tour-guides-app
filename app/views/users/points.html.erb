@@ -1,0 +1,13 @@
+<h1>Points</h1>
+<table class="table">
+    <tr>
+        <th>Last Name</th>
+        <th>Points</th>
+    </tr>
+    <% @data.each do |data| %>
+    <tr>
+        <td><%= data.last_name %></td>
+        <td><%= data.points %></td>
+    </tr>
+    <% end %>
+</table>

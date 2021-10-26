@@ -1,5 +1,31 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
+  def points
+    @data = User.all
+  end
+
   def availability
+    if !User.find(session[:user_id])
+      redirect_to root_path
+    end
+  end
+
+  def availability_post
+    if !session[:user_id]
+      redirect_to root_path
+    end
+    new_params = {}
+    params.each do |k, v|
+      if v == "on"
+        new_params[k] = true
+      end
+    end
+    @user = User.find(session[:user_id])
+    @user.clear_availability
+    @user.update(new_params)
+    flash[:success] = "Availability Updated"
+    redirect_to root_path
   end
 
   def profile
@@ -17,6 +43,7 @@ class UsersController < ApplicationController
 
   def logout
     session.delete(:user_id)
+    redirect_to login_path
   end
 
   def list
@@ -51,6 +78,20 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def availability_params
+    params.permit(
+      ["mon", "tues", "wed", "thur", "fri", "sat", "sun"].each do |day|
+        ["_9", "_9:30", "_10", "_10:30", "_11", 
+          "_11:30", "_12", "_12:30", "_1", "_1:30",
+          "_2", "_2:30", "_3", "_3:30", "_4", "_4:30",
+          "_5", "_5:30"].each do |time|
+            "#{day}#{time}"
+          end
+        end
+    )
+    
   end
 
 end
