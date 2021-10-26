@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'users/availability', to: 'users#availability_post'
   get 'users/profile'
   get 'users/points'
+  get 'users/check_in'
 
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
