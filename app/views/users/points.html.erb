@@ -1,0 +1,16 @@
+<% content_for :stylesheets do %>
+ <%= stylesheet_link_tag "/app/javascript/stylesheets/points.scss" %>
+<% end %>
+
+<h1>Points<h1>
+<table class="table">
+    <tr>
+        <th>Last Name</th>
+        <th>Points</th>
+    </tr>
+    <% @data.each do |data| %>
+    <tr>
+        <td>data.last_name</td>
+        <td>data.points</td>
+    </tr>
+</table>
