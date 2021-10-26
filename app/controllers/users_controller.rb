@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   def profile
   end
 
+  def subboard
+  end
+
   def new
     @user = User.new
   end

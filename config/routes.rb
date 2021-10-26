@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'users/availability'
   get 'users/profile'
+  get 'users/subboard'
 
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
