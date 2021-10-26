@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  def points
+    @data = User.all
+  end
+
   def availability
     if !User.find(session[:user_id])
       redirect_to root_path

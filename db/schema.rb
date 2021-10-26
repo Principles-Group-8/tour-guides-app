@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_035106) do
+ActiveRecord::Schema.define(version: 2021_10_26_021611) do
 
   create_table "tours", force: :cascade do |t|
     t.datetime "time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "end_time"
-    t.datetime "min_guides", null: false
   end
 
   create_table "tours_users", id: false, force: :cascade do |t|
@@ -157,9 +155,6 @@ ActiveRecord::Schema.define(version: 2021_10_26_035106) do
     t.boolean "sun_4:30", default: false, null: false
     t.boolean "sun_5", default: false, null: false
     t.boolean "sun_5:30", default: false, null: false
-    t.string "first_name", default: "First", null: false
-    t.string "last_name", default: "Last", null: false
-    t.integer "points", default: 0, null: false
   end
 
 end
