@@ -3,18 +3,20 @@
         <%= image_tag "VUTG_Logo.png", :class => "navbar-brand" %>
     </a>
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <%= link_to "Home", root_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Availability", users_availability_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Schedule", users_profile_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Points", users_points_path, class: "nav-link" %>
-      </li>
+      <% if logged_in? %>
+        <li class="nav-item">
+          <%= link_to "Availability", users_availability_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Schedule", users_profile_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Points", users_points_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sub Board", users_subboard_path, class: "nav-link" %>
+        </li>
+      <% end %>
     </ul>
 
     <ul class="nav navbar-nav">
@@ -25,6 +27,14 @@
         <li class="nav-item">
           <%= link_to "Log In", login_path, class: "nav-link" %>
         </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Log Out", logout_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= "#{current_user.first_name} #{current_user.last_name}" %>
+        </li>
       <% end %>
     </ul>
+
 </nav>

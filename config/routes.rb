@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'static#index'
+  root 'users#login'
 
   get 'users/availability'
   post 'users/availability', to: 'users#availability_post'
