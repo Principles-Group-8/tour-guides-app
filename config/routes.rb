@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'users/profile'
 
   get 'users/subboard'
+  post 'subboard_remove', to: 'users#subboard_remove'
+  post 'subboard_claim', to: 'users#subboard_claim'
   get 'users/points'
 
   get 'signup', to: 'users#new'

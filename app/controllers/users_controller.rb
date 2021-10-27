@@ -75,6 +75,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def subboard_remove
+    user = User.find(session[:user_id])
+    params[:user][:tour_ids][1..].each do |tour|
+      user.tours.delete(Tour.find(tour))
+    end
+    redirect_to users_subboard_path
+  end 
+
+  def subboard_claim
+    user = User.find(session[:user_id])
+    params[:user][:tour_ids][1..].each do |tour|
+      user.tours.append Tour.find(tour)
+    end
+    redirect_to users_subboard_path
+  end
+
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
