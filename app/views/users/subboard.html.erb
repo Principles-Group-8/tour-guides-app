@@ -1,52 +1,58 @@
 <% cur_user = User.find(session[:user_id]) %>
 
-<h1 class="text-center my-4">Sub Board</h1>
+<div class="container-fluid">
+    <h1 class="text-center my-4">Sub Board</h1>
 
-<div class="row justify-content-center">
-    <div class="col-md-5 text-center" style="background: black">
-        <% if cur_user.tours.size != 0 %>
-            <%= form_tag '/subboard_remove' do %>
-                <div class="d-flex align-items-center justify-content-center" style="height: 3em; color: white">
-                    Your Tours
-                </div>
-                <br/>
-                <%= collection_check_boxes(:user, :tour_ids, cur_user.tours.all, :id, :display) do |tour| %>
-                    <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C; height: 3em">
-                        <%= tour.check_box %>
-                        <%= tour.label %>  
-                    </div> 
+    <div class="row justify-content-center">
+        <div class="col-md-5 text-center" style="background: black">
+            <% if cur_user.tours.all.select{|tour| tour.end_time > Time.zone.now}.size != 0 %>
+                <%= form_tag '/subboard_remove' do %>
+                    <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
+                        Your Tours
+                    </div>
+                    <br/>
+                    <%= collection_check_boxes(:user, :tour_ids, cur_user.tours.all.select {|tour| tour.end_time > Time.zone.now}, :id, :display) do |tour| %>
+                        <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C">
+                            <div class="my-2">
+                                <%= tour.check_box %>
+                                <%= tour.label %>  
+                            </div>
+                        </div> 
+                    <% end %>
+                    <br/>
+                    <%= submit_tag "Post Tours to Board" %>
                 <% end %>
-                <br/>
-                <%= submit_tag "Post Tours to Board" %>
-            <% end %>
-        <% else %>
-            <div class="d-flex align-items-center justify-content-center" style="height: 3em; color: white">
-                You have no currently assigned tours
-            </div>
-        <% end %>
-
-    </div>
-
-    <div class="col-md-5 offset-md-1 text-center" style="background: black">
-        <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user)}.size != 0 %>
-            <%= form_tag '/subboard_claim' do %>           
-                <div class="d-flex align-items-center justify-content-center" style="height: 3em; color: white">
-                    Available Tours
+            <% else %>
+                <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
+                    You have no currently assigned tours
                 </div>
-                <br/>
-                <%= collection_check_boxes(:user, :tour_ids, Tour.all.select {|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user)} , :id, :display) do |tour| %>
-                    <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C; height: 3em">
-                        <%= tour.check_box %>
-                        <%= tour.label %>  
-                    </div> 
-                <% end %>
-                <br/>
-                <%= submit_tag "Claim Tours from Board" %>
             <% end %>
-        <% else %>
-            <div class="d-flex align-items-center justify-content-center" style="height: 3em; color: white">
-                There are no tours currently available to claim
-            </div>
-        <% end %>
+
+        </div>
+
+        <div class="col-md-5 offset-md-1 text-center" style="background: black">
+            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.size != 0 %>
+                <%= form_tag '/subboard_claim' do %>           
+                    <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
+                        Available Tours
+                    </div>
+                    <br/>
+                    <%= collection_check_boxes(:user, :tour_ids, Tour.all.select {|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now} , :id, :display) do |tour| %>
+                        <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C">
+                            <div class="my-2">
+                                <%= tour.check_box %>
+                                <%= tour.label %>  
+                            </div>
+                        </div> 
+                    <% end %>
+                    <br/>
+                    <%= submit_tag "Claim Tours from Board" %>
+                <% end %>
+            <% else %>
+                <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
+                    There are no tours currently available to claim
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>

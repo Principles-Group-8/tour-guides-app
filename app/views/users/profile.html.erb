@@ -1,5 +1,16 @@
 <h1>Profile Page</h1>
 
-<%= month_calendar do |date| %>
-  <%= date %>
-<% end %>
+<% cur_user = User.find(session[:user_id]) %>
+
+<div class="text-center">
+  <%= month_calendar do |date| %>
+    <%= date %>
+    <br/>
+    <br/>
+    <% cur_user.tours.all.each do |tour| %>
+      <% if tour.time.month == date.month && tour.time.day == date.day %>
+        <%= tour.time_display %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
