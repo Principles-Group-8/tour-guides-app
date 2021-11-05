@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def availability
-    if !User.find(session[:user_id])
+    if !session[:user_id] || !User.find(session[:user_id])
       redirect_to root_path
     end
   end
@@ -84,9 +84,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def subboard_remove
+    user = User.find(session[:user_id])
+    params[:user][:tour_ids][1..].each do |tour|
+      user.tours.delete(Tour.find(tour))
+    end
+    redirect_to users_subboard_path
+  end 
+
+  def subboard_claim
+    user = User.find(session[:user_id])
+    params[:user][:tour_ids][1..].each do |tour|
+      user.tours.append Tour.find(tour)
+    end
+    redirect_to users_subboard_path
+  end
+
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
   def availability_params

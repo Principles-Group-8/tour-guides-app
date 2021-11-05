@@ -13,5 +13,7 @@ development and PostgreSQL for production.
 
 Sprint 1 (Oct 12, 2021): Basic functionality and user logon
 
+Sprint 2 (Oct 28, 2021): Broader database functionality and manipulation, manual tour assignment
+
 To run development server:
     $ rails server

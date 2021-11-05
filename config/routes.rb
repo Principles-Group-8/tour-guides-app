@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
-  root 'static#index'
+  root 'users#login'
 
   get 'users/availability'
   post 'users/availability', to: 'users#availability_post'
   get 'users/profile'
 
   get 'users/subboard'
+  post 'subboard_remove', to: 'users#subboard_remove'
+  post 'subboard_claim', to: 'users#subboard_claim'
   get 'users/points'
   get 'users/check_in'
   post 'users/check_in', to: 'users#check_in_post'

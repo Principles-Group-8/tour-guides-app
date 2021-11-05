@@ -1,36 +1,58 @@
 <% cur_user = User.find(session[:user_id]) %>
 
-<h1 class="text-center my-4">Sub Board</h1>
+<div class="container-fluid">
+    <h1 class="text-center my-4">Sub Board</h1>
 
-<%= form_tag '/subboard' do %>
-    <div class="row mx-5">
-        <div class="col-md-3 text-center" style="background: black">
-        <div class="d-flex align-items-center justify-content-center" style="height: 3em; color: white">
-        Your Tours
-        </div>
-        <br/>
-        <% cur_user.tours.each do |tour| %>
-            <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C; height: 3em">
-                <input type="checkbox"/>
-                <label><%= tour.time.strftime('%A') %>
-                <%= tour.time.month %>/<%= tour.time.day %>
-                <%= tour.time.hour %>:<%= tour.time.min %> -
-                Fill in with end time
-                </label>
-            </div>
-            <br/>
-        <% end %>
-        <%= submit_tag "Post Tours to Board" %>
+    <div class="row justify-content-center">
+        <div class="col-md-5 text-center" style="background: black">
+            <% if cur_user.tours.all.select{|tour| tour.end_time > Time.zone.now}.size != 0 %>
+                <%= form_tag '/subboard_remove' do %>
+                    <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
+                        Your Tours
+                    </div>
+                    <br/>
+                    <%= collection_check_boxes(:user, :tour_ids, cur_user.tours.all.select {|tour| tour.end_time > Time.zone.now}, :id, :display) do |tour| %>
+                        <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C">
+                            <div class="my-2">
+                                <%= tour.check_box %>
+                                <%= tour.label %>  
+                            </div>
+                        </div> 
+                    <% end %>
+                    <br/>
+                    <%= submit_tag "Post Tours to Board" %>
+                <% end %>
+            <% else %>
+                <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
+                    You have no currently assigned tours
+                </div>
+            <% end %>
+
         </div>
 
-        <div class="col-md-8 offset-md-1 text-center d-flex justify-content-center" style="background: black; color:white; position: relative">
-            Available Tours
-            <br/>
-            Fill in available tours
-            <br/>
-            <div style="position: absolute; bottom: 0px">
-                <%= submit_tag "Claim Tours from Board" %>
-            </div>
+        <div class="col-md-5 offset-md-1 text-center" style="background: black">
+            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.size != 0 %>
+                <%= form_tag '/subboard_claim' do %>           
+                    <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
+                        Available Tours
+                    </div>
+                    <br/>
+                    <%= collection_check_boxes(:user, :tour_ids, Tour.all.select {|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now} , :id, :display) do |tour| %>
+                        <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C">
+                            <div class="my-2">
+                                <%= tour.check_box %>
+                                <%= tour.label %>  
+                            </div>
+                        </div> 
+                    <% end %>
+                    <br/>
+                    <%= submit_tag "Claim Tours from Board" %>
+                <% end %>
+            <% else %>
+                <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
+                    There are no tours currently available to claim
+                </div>
+            <% end %>
         </div>
     </div>
-<% end %>
+</div>

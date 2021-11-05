@@ -17,3 +17,37 @@
 ul.navbar-nav a:hover {
     color: #fff !important;
 }
+
+.simple-calendar {
+    .calendar-heading span{
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    th{
+        outline-color: black;
+        outline-style: solid;
+    }
+
+    .day{
+        background-color: #D8AB4C;
+        outline-color: black;
+        outline-style: solid;
+        font-weight: bold;
+        width: 14%;
+    }
+    
+    .prev-month{
+        background-color: black;
+        color: black;
+        outline-color: black;
+        outline-style: solid;
+    }
+
+    .next-month{
+        background-color: black;
+        color: black;
+        outline-color: black;
+        outline-style: solid;
+    }
+}
