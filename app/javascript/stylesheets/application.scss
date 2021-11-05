@@ -51,3 +51,24 @@ ul.navbar-nav a:hover {
         outline-style: solid;
     }
 }
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+    background-color: #D8AB4C !important;
+    color: black !important;
+    border-color: #D8AB4C !important;
+}
+
+.btn-primary:hover {
+    background-color: #D8AB4C !important;
+    color: black !important;
+    border-color: black !important;
+}
+
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited, .btn-outline-primary:hover {
+    color: black !important;
+    border-color: #D8AB4C !important;
+}
+
+.btn-outline-primary:active, .btn-outline-primary:visited, .btn-outline-primary:hover {
+    background-color: #D8AB4C !important;
+}
