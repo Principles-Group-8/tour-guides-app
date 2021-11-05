@@ -28,6 +28,15 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def check_in_post
+    if !session[:user_id]
+      redirect_to root_path
+    end
+    #the line below this is wrong. I just want to increment the points field for current user by one
+    User.where(user_id: session[:user_id]).update_all(points: session[:points])
+    flash[:success] = "Points Updated"
+  end
+
   def profile
   end
 

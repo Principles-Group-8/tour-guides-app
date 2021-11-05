@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users/subboard'
   get 'users/points'
   get 'users/check_in'
+  post 'users/check_in', to: 'users#check_in_post'
 
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
