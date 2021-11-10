@@ -1,8 +1,16 @@
 <div class="text-center">
     <h2>Login</h2>
     <%= form_tag '/login' do %>
-        Email: <%= text_field_tag :email %><br>
-        Password: <%= password_field_tag :password %><br>
+        <br>
+        Email 
+        <br>
+        <%= text_field_tag :email %>
+        <br>
+        Password 
+        <br>
+        <%= password_field_tag :password %>
+        <br>
+        <br>
         <%= submit_tag "Log In" %>
     <% end %>
 </div>
