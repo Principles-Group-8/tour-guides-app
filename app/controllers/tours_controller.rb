@@ -13,6 +13,7 @@ class ToursController < ApplicationController
         end
         @tour = Tour.new(tour_params)
         @tour.save
+        TourMailer.with(tour: @tour).tour_reminder.deliver_later(wait_until: @tour.time - 1.day)
         redirect_to tours_new_path
     end
 
