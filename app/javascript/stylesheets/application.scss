@@ -72,3 +72,7 @@ ul.navbar-nav a:hover {
 .btn-outline-primary:active, .btn-outline-primary:visited, .btn-outline-primary:hover {
     background-color: #D8AB4C !important;
 }
+
+.btn-check:checked + .btn-outline-primary {
+    background-color: #D8AB4C !important;
+}
