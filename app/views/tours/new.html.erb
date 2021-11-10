@@ -1,0 +1,12 @@
+<div class="text-center">
+    <h1>New Tour</h1>
+    <%= form_with model: @tour, url: tours_create_path do |f| %>
+        <%= f.label 'start_time' %><br>
+        <%= f.datetime_field :time %><br>
+        <%= f.label 'end_time' %><br>
+        <%= f.datetime_field :end_time, value: nil %><br>
+        <%= f.label 'minimum_guides' %><br>
+        <%= f.number_field :min_guides %><br>
+        <%= f.submit 'Create Tour' %>
+    <% end %>
+</div>

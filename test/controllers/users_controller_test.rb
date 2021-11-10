@@ -20,7 +20,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not User.find_by_email("test@mail.com").administrator
   end
 
-  test "should error user" do
+  test "should error user email" do
     post signup_url,
       params: { user: { email: "test", password: "password" } }
     assert_not User.find_by_email("test")

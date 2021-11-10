@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   post 'login', to: 'users#login_submit'
   get 'logout', to: 'users#logout'
 
+  get 'tours/new'
+  post 'tours/create'
+
   get 'list', to: 'users#list'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
