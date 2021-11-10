@@ -23,6 +23,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Calendar gem
 gem 'simple_calendar', '~> 2.4'
 
+gem 'boostrap-sass'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
