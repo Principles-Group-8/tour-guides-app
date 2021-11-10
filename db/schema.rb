@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_030203) do
+ActiveRecord::Schema.define(version: 2021_11_10_064620) do
 
   create_table "tours", force: :cascade do |t|
     t.datetime "time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "end_time", default: "2021-11-05 22:44:16", null: false
+    t.datetime "end_time", default: "2021-11-10 06:45:19", null: false
     t.integer "min_guides", null: false
+    t.string "location", default: "HOG", null: false
   end
 
   create_table "tours_users", id: false, force: :cascade do |t|
