@@ -12,15 +12,16 @@ class ToursController < ApplicationController
             redirect_to root_path
         end
         @tour = Tour.new(tour_params)
+        @tour.end_time = @tour.time + params[:tour][:hours].to_i.hours
         @tour.save
         TourMailer.with(tour: @tour).tour_reminder.deliver_later(wait_until: @tour.time - 1.day)
         redirect_to tours_new_path
     end
 
     private
-    
+
     def tour_params
-        params.require(:tour).permit(:time, :end_time, :min_guides)
+        params.require(:tour).except(:hours).permit(:time, :min_guides, :location, :note, :weekly, :weeks)
     end
 
 end
