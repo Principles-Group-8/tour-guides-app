@@ -11,7 +11,7 @@
     <br/>
     <% cur_user.tours.all.each do |tour| %>
       <% if tour.time.month == date.month && tour.time.day == date.day %>
-        <li class="text-center">
+        <li class="list-group-item list-group-item-action list-group-item-dark">
           <%= tour.time_display %>
         </li>
       <% else %>
