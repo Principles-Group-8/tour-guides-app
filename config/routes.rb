@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'tours/manage'
   get 'tours/:id', to: 'tours#delete'
   get 'tours/manage/:id', to: 'tours#manage_guides'
+  post 'remove_guide', to: 'tours#remove_guide'
+  post 'add_guide', to: 'tours#add_guide'
 
   get 'list', to: 'users#list'
 

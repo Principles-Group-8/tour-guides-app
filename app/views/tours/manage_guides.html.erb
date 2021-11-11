@@ -3,43 +3,61 @@
     <div class="col-md-5 offset-md-1 justify-content-center">
         <h3 class="text-center">Guides on Tour</h3>
         <%= form_tag "/remove_guide" do %>
+            <%= hidden_field_tag :tour , @tour.id %>
             <table class="table table-bordered text-center">
-                <%= collection_check_boxes(:user, :user_ids, @tour.users.all.each, :id, :name_display) do |user| %>
-                    <tr>
-                        <td>
-                            <%= user.label %>
-                        </td>
-                        <td>
-                            <%= user.check_box({class: "btn-check"}) %>
-                            <label class="btn btn-outline-primary shadow-none" for="user_user_ids_<%= user.value %>">Remove</label>
-                        </td>
-                    </tr>
-                <% end %>
+                <tbody>
+                    <%= collection_check_boxes(:user, :user_ids, @tour.users.all.each, :id, :name_display) do |user| %>
+                        <tr>
+                            <td>
+                                <%= user.label %>
+                            </td>
+                            <td>
+                                <%= user.check_box({class: "btn-check"}) %>
+                                <label class="btn btn-outline-primary shadow-none" for="user_user_ids_<%= user.value %>">Remove</label>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
             </table>
-            <div class="justify-content-center row">
-                <%= submit_tag "Submit", class: "btn btn-primary col-md-2 my-2 shadow-none" %>
-            </div>
+            <% if @tour.users.size == 0 %>
+                <h5 class="text-center">
+                    There are no guides on this tour
+                </h5>
+            <% else %>
+                <div class="justify-content-center row">
+                    <%= submit_tag "Submit", class: "btn btn-primary col-md-2 my-2 shadow-none" %>
+                </div>
+            <% end %>
         <% end %>
     </div>
     <div class="col-md-5 justify-content-center">
         <h3 class="text-center">Guides Not on Tour</h3>
-        <form id="add_guide" method="post">
+        <%= form_tag "/add_guide" do %>
+            <%= hidden_field_tag :tour , @tour.id %>
             <table class="table table-bordered text-center">
-                <% User.all.select{|user| !@tour.users.member?(user)}.each do |user| %>
-                    <tr>
-                        <td>
-                            <%= user.first_name %> <%= user.last_name %>
-                        </td>
-                        <td>
-                            <input type="checkbox" class="btn-check" id="<%= user.id %>" name="<%= user.id %>">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= user.id %>">Add</label>
-                        </td>
-                    </tr>
-                <% end %>
+                <tbody>
+                    <%= collection_check_boxes(:user, :user_ids, User.all.select{|user| !@tour.users.member?(user)}, :id, :name_display) do |user| %>
+                        <tr>
+                            <td>
+                            <%= user.label %>
+                            </td>
+                            <td>
+                            <%= user.check_box({class: "btn-check"}) %>
+                            <label class="btn btn-outline-primary shadow-none" for="user_user_ids_<%= user.value %>">Add</label>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
             </table>
-            <div class="justify-content-center row">
-                <input class="btn btn-primary col-md-2 my-2 shadow-none" type="submit" value="Submit"/>
-            </div>
-        </form>
+            <% if User.all.select{|user| !@tour.users.member?(user)}.size == 0 %>
+                <h5 class="text-center">
+                    All guides are assigned to this tour
+                </h5>
+            <% else %>
+                <div class="justify-content-center row">
+                    <%= submit_tag "Submit", class: "btn btn-primary col-md-2 my-2 shadow-none" %>
+                </div>
+            <% end %>
+        <% end %>
     </div>
 </div>
