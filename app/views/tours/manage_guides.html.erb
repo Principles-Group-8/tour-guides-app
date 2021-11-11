@@ -1,12 +1,12 @@
-<h1 class="text-center">Manage Guides</h1>
+<h1 class="text-center my-4">Manage Guides</h1>
 <div class="row">
-    <div class="col-md-5 offset-md-1 justify-content-center">
+    <div class="col-md-5 offset-md-1 mb-5 mb-lg-0">
         <h3 class="text-center">Guides on Tour</h3>
         <%= form_tag "/remove_guide" do %>
             <%= hidden_field_tag :tour , @tour.id %>
             <table class="table table-bordered text-center">
                 <tbody>
-                    <%= collection_check_boxes(:user, :user_ids, @tour.users.all.each, :id, :name_display) do |user| %>
+                    <%= collection_check_boxes(:user, :user_ids, @tour.users.order(:last_name).all.each, :id, :name_display) do |user| %>
                         <tr>
                             <td>
                                 <%= user.label %>
@@ -24,19 +24,19 @@
                     There are no guides on this tour
                 </h5>
             <% else %>
-                <div class="justify-content-center row">
-                    <%= submit_tag "Submit", class: "btn btn-primary col-md-2 my-2 shadow-none" %>
+                <div class="text-center">
+                    <%= submit_tag "Remove from Tour", class: "btn btn-primary my-1 shadow-none" %>
                 </div>
             <% end %>
         <% end %>
     </div>
-    <div class="col-md-5 justify-content-center">
+    <div class="col-md-5 mb-3 mb-lg-0">
         <h3 class="text-center">Guides Not on Tour</h3>
         <%= form_tag "/add_guide" do %>
             <%= hidden_field_tag :tour , @tour.id %>
             <table class="table table-bordered text-center">
                 <tbody>
-                    <%= collection_check_boxes(:user, :user_ids, User.all.select{|user| !@tour.users.member?(user)}, :id, :name_display) do |user| %>
+                    <%= collection_check_boxes(:user, :user_ids, User.order(:last_name).all.select{|user| !@tour.users.member?(user)}, :id, :name_display) do |user| %>
                         <tr>
                             <td>
                             <%= user.label %>
@@ -54,8 +54,8 @@
                     All guides are assigned to this tour
                 </h5>
             <% else %>
-                <div class="justify-content-center row">
-                    <%= submit_tag "Submit", class: "btn btn-primary col-md-2 my-2 shadow-none" %>
+                <div class="text-center">
+                    <%= submit_tag "Add to Tour", class: "btn btn-primary my-1 shadow-none" %>
                 </div>
             <% end %>
         <% end %>

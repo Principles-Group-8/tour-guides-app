@@ -1,13 +1,19 @@
-<h1>Points</h1>
-<table class="table">
-    <tr>
-        <th>Last Name</th>
-        <th>Points</th>
-    </tr>
-    <% @data.each do |data| %>
-    <tr>
-        <td><%= data.last_name %></td>
-        <td><%= data.points %></td>
-    </tr>
-    <% end %>
-</table>
+<h1 class="text-center my-4">Points</h1>
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <table class="table table-bordered">
+            <tr>
+                <th>Last Name</th>
+                <th>Points</th>
+            </tr>
+            <tbody>
+                <% @data.order(:last_name).each do |data| %>
+                <tr>
+                    <td><%= data.last_name %></td>
+                    <td><%= data.points %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

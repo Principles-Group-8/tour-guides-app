@@ -3,55 +3,68 @@
 <div class="container-fluid">
     <h1 class="text-center my-4">Sub Board</h1>
 
-    <div class="row justify-content-center">
-        <div class="col-md-5 text-center" style="background: black">
-            <% if cur_user.tours.all.select{|tour| tour.end_time > Time.zone.now}.size != 0 %>
-                <%= form_tag '/subboard_remove' do %>
-                    <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
-                        Your Tours
+    <div class="row">
+        <div class="col-md-5 offset-md-1 mb-5 mb-lg-0">
+            <h3 class="text-center">
+                Your Tours
+            </h3>
+            <%= form_tag '/subboard_remove' do %>
+                <table class="table table-bordered text-center">
+                    <tbody>
+                        <%= collection_check_boxes(:user, :tour_ids, cur_user.tours.order(:time).all.select {|tour| tour.end_time > Time.zone.now}, :id, :display) do |tour| %>
+                            <tr>
+                                <td>
+                                    <%= tour.label %>
+                                </td>
+                                <td>
+                                    <%= tour.check_box({class: "btn-check"}) %>
+                                    <label class="btn btn-outline-primary shadow-none" for="user_tour_ids_<%= tour.value %>">Post</label>
+                                </td>
+                            </tr> 
+                        <% end %>
+                    </tbody>
+                </table>
+                <% if cur_user.tours.all.select{|tour| tour.end_time > Time.zone.now}.size != 0 %>
+                    <div class="text-center">
+                        <%= submit_tag "Post Tours to Board", class: "btn btn-primary my-1 shadow-none" %>
                     </div>
-                    <br/>
-                    <%= collection_check_boxes(:user, :tour_ids, cur_user.tours.all.select {|tour| tour.end_time > Time.zone.now}, :id, :display) do |tour| %>
-                        <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C">
-                            <div class="my-2">
-                                <%= tour.check_box %>
-                                <%= tour.label %>  
-                            </div>
-                        </div> 
-                    <% end %>
-                    <br/>
-                    <%= submit_tag "Post Tours to Board" %>
+                <% else %>
+                    <h5 class="text-center">
+                        You have no currently assigned tours
+                    </h5>
                 <% end %>
-            <% else %>
-                <h5 class="d-flex align-items-center justify-content-center my-5" style="color: white">
-                    You have no currently assigned tours
-                </h5>
             <% end %>
-
         </div>
 
-        <div class="col-md-5 offset-md-1 text-center" style="background: black">
-            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.size != 0 %>
-                <%= form_tag '/subboard_claim' do %>           
-                    <div class="d-flex align-items-center justify-content-center my-2" style="color: white">
-                        Available Tours
+        <div class="col-md-5 mb-3 mb-lg-0">
+            <h3 class="text-center">
+                Available Tours
+            </h3>
+            <%= form_tag '/subboard_claim' do %>    
+                <table class="table table-bordered text-center">
+                    <tbody>       
+                        <%= collection_check_boxes(:user, :tour_ids, Tour.order(:time).all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now} , :id, :display) do |tour| %>
+                            <tr>
+                                <td>
+                                    <%= tour.label %>
+                                </td>
+                                <td>
+                                    <%= tour.check_box({class: "btn-check"}) %>
+                                    <label class="btn btn-outline-primary shadow-none" for="user_tour_ids_<%= tour.value %>">Claim</label>
+                                </td>
+                            </tr> 
+                        <% end %>
+                    </tbody>
+                </table>
+                <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.size != 0 %>
+                    <div class="text-center">
+                        <%= submit_tag "Claim Tours from Board", class: "btn btn-primary my-1 shadow-none" %>
                     </div>
-                    <br/>
-                    <%= collection_check_boxes(:user, :tour_ids, Tour.all.select {|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now} , :id, :display) do |tour| %>
-                        <div class="d-flex align-items-center justify-content-center" style="background: #D8AB4C">
-                            <div class="my-2">
-                                <%= tour.check_box %>
-                                <%= tour.label %>  
-                            </div>
-                        </div> 
-                    <% end %>
-                    <br/>
-                    <%= submit_tag "Claim Tours from Board" %>
+                <% else %>
+                    <h5 class="text-center">
+                        There are no tours currently available to claim
+                    </h5>
                 <% end %>
-            <% else %>
-                <h5 class="d-flex align-items-center justify-content-center my-5" style="color: white">
-                    There are no tours currently available to claim
-                </h5>
             <% end %>
         </div>
     </div>

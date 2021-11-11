@@ -1,4 +1,4 @@
-<h1 class="text-center">Manage Tours</h1>
+<h1 class="text-center my-4">Manage Tours</h1>
 
 <table class="table text-center">
     <thead>
@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <% Tour.all.each do |tour| %>
+        <% Tour.order(:time).all.select{|tour| tour.end_time > Time.zone.now}.each do |tour| %>
             <tr>
                 <td>
                     <%= tour.date_display %>
