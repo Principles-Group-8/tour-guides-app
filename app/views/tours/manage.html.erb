@@ -19,12 +19,12 @@
                     <%= tour.time_display %>
                 </td>
                 <td>
-                    <a href=<%= "/tours/manage_guides?#{tour.id}" %> class="btn btn-primary btn-sm rounded-2">
+                    <a href=<%= "manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2">
                     Click to Manage Guides
                     </a>
                 </td>
                 <td>
-                    <a href=<%= "tours/delete?#{tour.id}" %> class="btn btn-danger btn-sm rounded-2">
+                    <a href=<%= "#{tour.id}" %> class="btn btn-danger btn-sm rounded-2">
                     Delete
                     </a>
                 </td>

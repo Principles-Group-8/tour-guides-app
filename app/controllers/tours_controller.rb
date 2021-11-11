@@ -18,6 +18,21 @@ class ToursController < ApplicationController
         redirect_to tours_new_path
     end
 
+    def delete
+        if !session[:user_id] || !User.find(session[:user_id]).administrator
+            redirect_to root_path
+        end
+        Tour.find(params[:id]).delete
+        redirect_back(fallback_location: root_path)
+    end
+
+    def manage_guides
+        if !session[:user_id] || !User.find(session[:user_id]).administrator
+            redirect_to root_path
+        end
+        @tour = Tour.find(params[:id])
+    end
+
     private
 
     def tour_params

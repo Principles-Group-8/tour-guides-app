@@ -22,7 +22,10 @@ Rails.application.routes.draw do
   get 'tours/new'
   post 'tours/create'
   get 'tours/manage'
+  get 'tours/:id', to: 'tours#delete'
+  get 'tours/manage/:id', to: 'tours#manage_guides'
 
   get 'list', to: 'users#list'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
