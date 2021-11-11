@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_11_11_042106) do
     t.datetime "time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "end_time", default: "2021-11-11 06:55:39", null: false
+    t.datetime "end_time", default: "2021-11-11 18:11:04", null: false
     t.integer "min_guides", null: false
     t.string "location", default: "HOG", null: false
     t.string "note"
