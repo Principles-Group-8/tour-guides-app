@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get 'tours/new'
   post 'tours/create'
+  get 'tours/manage'
 
   get 'list', to: 'users#list'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
