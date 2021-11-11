@@ -15,4 +15,9 @@ class User < ApplicationRecord
           end
           update(false_hash)
     end
+
+    def name_display
+      "#{first_name} #{last_name}"
+    end
+
 end
