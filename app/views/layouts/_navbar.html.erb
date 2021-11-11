@@ -1,13 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light dropdown">
     <div class="navbar-brand">
         <%= image_tag "VUTG_Logo.png", :class => "navbar-brand" %>
     </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <button class="navbar-toggler" type="button" id="navbarCollapse" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="nav navbar-nav">
         <% if logged_in? %>
+
+          <li class="nav-item dropdown show">
+            <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Tour Manager</a>
+              <a class="dropdown-item" href="#">User Manager</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Scheduler</a>
+            </div>
+          </li>
+
           <li class="nav-item">
             <%= link_to "Availability", users_availability_path, class: "nav-link" %>
           </li>
