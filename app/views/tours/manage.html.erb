@@ -1,0 +1,34 @@
+<h1 class="text-center">Manage Tours</h1>
+
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th>Tour Date</th>
+            <th>Tour Time</th>
+            <th>Manage Guides</th>
+            <th>Delete Tour</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% Tour.all.each do |tour| %>
+            <tr>
+                <td>
+                    <%= tour.date_display %>
+                </td>
+                <td>
+                    <%= tour.time_display %>
+                </td>
+                <td>
+                    <a href=<%= "manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2">
+                    Click to Manage Guides
+                    </a>
+                </td>
+                <td>
+                    <a href=<%= "#{tour.id}" %> class="btn btn-danger btn-sm rounded-2">
+                    Delete
+                    </a>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
