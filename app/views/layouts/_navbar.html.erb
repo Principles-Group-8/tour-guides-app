@@ -8,6 +8,19 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="nav navbar-nav">
         <% if logged_in? %>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Tour Manager</a>
+              <a class="dropdown-item" href="#">User Manager</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Scheduler</a>
+            </div>
+          </li>
+
           <li class="nav-item">
             <%= link_to "Availability", users_availability_path, class: "nav-link" %>
           </li>
