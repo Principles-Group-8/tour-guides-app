@@ -8,7 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not get availability" do
+  test "should not get availability when not logged in" do
     get users_availability_url
     assert_response :redirect
   end
@@ -20,7 +20,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not get profile" do
+  test "should not get profile when not logged in" do
     get users_profile_url
     assert_response :redirect
   end
@@ -32,7 +32,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not get check_in" do
+  test "should not get check_in when not logged in" do
     get users_check_in_url
     assert_response :redirect
   end
@@ -44,7 +44,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not get points" do
+  test "should not get points when not logged in" do
     get users_points_url
     assert_response :redirect
   end
@@ -56,7 +56,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not get subboard" do
+  test "should not get subboard when not logged in" do
     get users_subboard_url
     assert_response :redirect
   end
@@ -91,7 +91,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get list for administrator" do
-    
+    post login_url,
+      params: { email: "admin@mail.com", password: "password" }
+    get list_url
+    assert_response :success
+  end
+
+  test "should not get list for non-administrator" do
+    post login_url,
+      params: { email: "normal@mail.com", password: "password" }
+    get list_url
+    assert_response :redirect
+  end
+
+test "should not get list when not logged in" do
+    get list_url
+    assert_response :redirect
   end
 
 end
