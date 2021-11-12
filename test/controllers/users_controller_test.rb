@@ -2,13 +2,38 @@ require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get availability" do
+    post login_url,
+      params: { email: "normal@mail.com", password: 'password' }
     get users_availability_url
-    assert_response :found
+    assert_response :success
   end
 
   test "should get profile" do
+    post login_url,
+      params: { email: "normal@mail.com", password: 'password' }
     get users_profile_url
-    assert_response :found
+    assert_response :success
+  end
+
+  test "should get check_in" do
+    post login_url,
+      params: { email: "normal@mail.com", password: 'password' }
+    get users_check_in_url
+    assert_response :success
+  end
+
+  test "should get points" do
+    post login_url,
+      params: { email: "normal@mail.com", password: 'password' }
+    get users_points_url
+    assert_response :success
+  end
+
+  test "should get subboard" do
+    post login_url,
+      params: { email: "normal@mail.com", password: 'password' }
+    get users_subboard_url
+    assert_response :success
   end
 
   test "should signup user" do
