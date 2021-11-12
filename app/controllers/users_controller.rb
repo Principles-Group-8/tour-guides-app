@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def points
+    if !session[:user_id]
+      redirect_to root_path
+    end
     @data = User.all
   end
 
@@ -28,6 +31,12 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def check_in
+    if !session[:user_id]
+      redirect_to root_path
+    end
+  end
+
   def check_in_post
     if !session[:user_id]
       redirect_to root_path
@@ -45,6 +54,9 @@ class UsersController < ApplicationController
   end
 
   def subboard
+    if !session[:user_id]
+      redirect_to root_path
+    end
   end
 
   def new
@@ -92,6 +104,9 @@ class UsersController < ApplicationController
   end
 
   def subboard_remove
+    if !session[:user_id]
+      redirect_to root_path
+    end
     user = User.find(session[:user_id])
     params[:user][:tour_ids][1..].each do |tour|
       user.tours.delete(Tour.find(tour))
@@ -100,6 +115,9 @@ class UsersController < ApplicationController
   end 
 
   def subboard_claim
+    if !session[:user_id]
+      redirect_to root_path
+    end
     user = User.find(session[:user_id])
     params[:user][:tour_ids][1..].each do |tour|
       user.tours.append Tour.find(tour)

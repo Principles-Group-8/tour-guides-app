@@ -14,6 +14,10 @@ class ToursController < ApplicationController
         redirect_to tours_new_path
     end
 
+    def manage
+        check_admin()
+    end
+
     def delete
         check_admin()
         Tour.find(params[:id]).delete

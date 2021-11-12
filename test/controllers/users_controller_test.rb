@@ -8,11 +8,21 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should not get availability" do
+    get users_availability_url
+    assert_response :redirect
+  end
+
   test "should get profile" do
     post login_url,
       params: { email: "normal@mail.com", password: 'password' }
     get users_profile_url
     assert_response :success
+  end
+
+  test "should not get profile" do
+    get users_profile_url
+    assert_response :redirect
   end
 
   test "should get check_in" do
@@ -22,6 +32,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should not get check_in" do
+    get users_check_in_url
+    assert_response :redirect
+  end
+
   test "should get points" do
     post login_url,
       params: { email: "normal@mail.com", password: 'password' }
@@ -29,11 +44,21 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should not get points" do
+    get users_points_url
+    assert_response :redirect
+  end
+
   test "should get subboard" do
     post login_url,
       params: { email: "normal@mail.com", password: 'password' }
     get users_subboard_url
     assert_response :success
+  end
+
+  test "should not get subboard" do
+    get users_subboard_url
+    assert_response :redirect
   end
 
   test "should signup user" do
