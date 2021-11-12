@@ -8,9 +8,14 @@ class ToursControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not get new tour" do
+  test "should not get new tour for non-administrator" do
     post login_url,
       params: { email: "normal@mail.com", password: 'password' }
+    get tours_new_url
+    assert_response :redirect
+  end
+
+  test "should not get new tour when not logged in" do
     get tours_new_url
     assert_response :redirect
   end
@@ -22,13 +27,17 @@ class ToursControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not get tour manager" do
+  test "should not get tour manager for non-administrator" do
     post login_url,
       params: { email: "normal@mail.com", password: 'password' }
     get tours_manage_url
     assert_response :redirect
   end
 
+  test "should not get tour manager when not logged in" do
+    get tours_manage_url
+    assert_response :redirect
+  end
 
   test "should create new tour" do
     post login_url,
