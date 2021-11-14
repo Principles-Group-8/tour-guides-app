@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'users/points'
   get 'users/check_in'
   post 'users/check_in', to: 'users#check_in_post'
+  get 'users/list', to: 'users#list'
+  get 'users/:id', to: 'users#delete'
 
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
@@ -26,8 +28,6 @@ Rails.application.routes.draw do
   get 'tours/manage/:id', to: 'tours#manage_guides'
   post 'remove_guide', to: 'tours#remove_guide'
   post 'add_guide', to: 'tours#add_guide'
-
-  get 'list', to: 'users#list'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

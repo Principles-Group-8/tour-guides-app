@@ -1,34 +1,38 @@
 <h1 class="text-center my-4">Manage Tours</h1>
 
-<table class="table text-center">
-    <thead>
-        <tr>
-            <th>Tour Date</th>
-            <th>Tour Time</th>
-            <th>Manage Guides</th>
-            <th>Delete Tour</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% Tour.order(:time).all.select{|tour| tour.end_time > Time.zone.now}.each do |tour| %>
-            <tr>
-                <td>
-                    <%= tour.date_display %>
-                </td>
-                <td>
-                    <%= tour.time_display %>
-                </td>
-                <td>
-                    <a href=<%= "manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2">
-                    Click to Manage Guides
-                    </a>
-                </td>
-                <td>
-                    <a href=<%= "#{tour.id}" %> class="btn btn-danger btn-sm rounded-2" onclick="return confirm('Are you sure you want to delete this tour?')">
-                    Delete
-                    </a>
-                </td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tour Date</th>
+                    <th>Tour Time</th>
+                    <th class="text-center">Manage Guides</th>
+                    <th class="text-center">Delete Tour</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% Tour.order(:time).all.select{|tour| tour.end_time > Time.zone.now}.each do |tour| %>
+                    <tr>
+                        <td>
+                            <%= tour.date_display %>
+                        </td>
+                        <td>
+                            <%= tour.time_display %>
+                        </td>
+                        <td class="text-center">
+                            <a href=<%= "manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
+                            Click to Manage Guides
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href=<%= "#{tour.id}" %> class="btn btn-danger btn-sm rounded-2 shadow-none" onclick="return confirm('Are you sure you want to delete this tour?')">
+                            Delete
+                            </a>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

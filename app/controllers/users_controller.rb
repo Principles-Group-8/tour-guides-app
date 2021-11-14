@@ -75,9 +75,7 @@ class UsersController < ApplicationController
   end
 
   def list
-    if !session[:user_id] || !User.find(session[:user_id]).administrator
-      redirect_to root_path
-    end
+    check_admin()
   end
 
   def login_submit
@@ -125,7 +123,19 @@ class UsersController < ApplicationController
     redirect_to users_subboard_path
   end
 
+  def delete
+    check_admin()
+    User.find(params[:id]).delete
+    redirect_back(fallback_location: root_path)
+  end
+
   private
+  def check_admin
+    if !session[:user_id] || !User.find(session[:user_id]).administrator
+        redirect_to root_path
+    end
+  end
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
