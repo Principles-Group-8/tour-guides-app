@@ -8,6 +8,8 @@
                     <th>Guide Name</th>
                     <th>Guide Email</th>
                     <th class="text-center">Guide Points</th>
+                    <th class="text-center">Edit Points</th>
+                    <th class="text-center">Admin?</th>
                     <th class="text-center">Delete Guide</th>
                 </tr>
             </thead>
@@ -22,6 +24,18 @@
                         </td>
                         <td class="text-center">
                             <%= user.points %>
+                        </td>
+                        <td class="text-center">
+
+                        </td>
+                        <td class="text-center">
+                            <% if user.administrator %>
+                                Yes
+                            <% else %>
+                                <a href=<%= "admin/#{user.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none" onclick="return confirm('Are you sure you want to convert this user to an admin?')">
+                                Make Admin
+                                </a>
+                            <% end %>
                         </td>
                         <td class="text-center">
                             <a href=<%= "#{user.id}" %> class="btn btn-danger btn-sm rounded-2 shadow-none" onclick="return confirm('Are you sure you want to delete this user?')">

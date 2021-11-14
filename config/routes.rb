@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'users/check_in', to: 'users#check_in_post'
   get 'users/list', to: 'users#list'
   get 'users/:id', to: 'users#delete'
+  get 'users/admin/:id', to: 'users#make_admin'
 
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'

@@ -129,6 +129,14 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def make_admin
+    check_admin()
+    @user = User.find(params[:id])
+    @user.administrator = true
+    @user.save
+    redirect_back(fallback_location: root_path)
+  end
+
   private
   def check_admin
     if !session[:user_id] || !User.find(session[:user_id]).administrator
