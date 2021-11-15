@@ -1,5 +1,15 @@
 @import "bootstrap/scss/bootstrap";
 
+body {
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../../assets/images/Background.jpeg);
+}
+
+thead {
+    background-color: white !important;
+}
+
 .navbar-brand {
     height: 90px;
     padding-left: 10px;
@@ -79,4 +89,22 @@ ul.navbar-nav a:hover {
 
 .myBtn.collapsed {
     background-color: white !important;
+}
+
+.d-flex {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%
+}
+
+.row {
+    background-color: white !important;
+}
+
+.login-submission {
+    background-color: white;
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
 }
