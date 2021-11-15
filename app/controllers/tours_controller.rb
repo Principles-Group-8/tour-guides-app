@@ -29,6 +29,11 @@ class ToursController < ApplicationController
         @tour = Tour.find(params[:id])
     end
 
+    def view_guides
+        check_admin()
+        @tour = Tour.find(params[:id])
+    end
+
     def remove_guide
         check_admin()
         @tour = Tour.find(params[:tour])
