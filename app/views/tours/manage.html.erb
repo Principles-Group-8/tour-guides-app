@@ -1,7 +1,7 @@
 <h1 class="text-center my-4">Manage Tours</h1>
 
 <div class="row">
-    <div class="col-md-8 offset-md-2" id="tourTables">
+    <div class="col-8 offset-2" id="tourTables">
         <button class="myBtn btn btn-primary shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#upcomingTours" aria-expanded="true" aria-controls="upcomingTours">
             Upcoming Tours
         </button>
@@ -28,7 +28,7 @@
                                 <%= tour.time_display %>
                             </td>
                             <td class="text-center">
-                                <a href=<%= "manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
+                                <a href=<%= "/tours/manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
                                 Click to Manage Guides
                                 </a>
                             </td>
@@ -62,7 +62,7 @@
                                 <%= tour.time_display %>
                             </td>
                             <td class="text-center">
-                                <a href=<%= "view_guides/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
+                                <a href=<%= "/tours/view_guides/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
                                 Click to View Guides
                                 </a>
                             </td>
