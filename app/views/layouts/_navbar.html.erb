@@ -1,58 +1,60 @@
-<nav class="navbar navbar-expand-lg navbar-light dropdown">
-    <div class="navbar-brand">
-        <%= image_tag "VUTG_Logo.png", :class => "navbar-brand" %>
-    </div>
+<div class="row">  
+  <nav class="navbar navbar-expand-lg navbar-light dropdown">
+      <div class="navbar-brand">
+          <%= image_tag "VUTG_Logo.png", :class => "navbar-brand" %>
+      </div>
 
-    <button class="navbar-toggler" type="button" id="navbarCollapse" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" id="navbarCollapse" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="nav navbar-nav">
-        <% if logged_in? %>
-          <% if administrator? %>
-            <li class="nav-item dropdown show">
-              <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Admin
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/tours/new">Tour Creator</a>
-                <a class="dropdown-item" href="/tours/manage">Tour Manager</a>
-                <a class="dropdown-item" href="/users/list">Guide List</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Scheduler</a>
-              </div>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="nav navbar-nav">
+          <% if logged_in? %>
+            <% if administrator? %>
+              <li class="nav-item dropdown show">
+                <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/tours/new">Tour Creator</a>
+                  <a class="dropdown-item" href="/tours/manage">Tour Manager</a>
+                  <a class="dropdown-item" href="/users/list">Guide List</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Scheduler</a>
+                </div>
+              </li>
+            <% end %>
+            <li class="nav-item">
+              <%= link_to "Availability", users_availability_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Schedule", users_profile_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Points", users_points_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sub Board", users_subboard_path, class: "nav-link" %>
+            </li>
+            <li>
+              <%= link_to "Check In", users_check_in_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log Out", logout_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= "#{current_user.first_name} #{current_user.last_name}" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign Up", signup_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log In", login_path, class: "nav-link" %>
             </li>
           <% end %>
-          <li class="nav-item">
-            <%= link_to "Availability", users_availability_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Schedule", users_profile_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Points", users_points_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sub Board", users_subboard_path, class: "nav-link" %>
-          </li>
-          <li>
-            <%= link_to "Check In", users_check_in_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log Out", logout_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= "#{current_user.first_name} #{current_user.last_name}" %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Sign Up", signup_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log In", login_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-</nav>
+        </ul>
+      </div>
+  </nav>
+</div>
