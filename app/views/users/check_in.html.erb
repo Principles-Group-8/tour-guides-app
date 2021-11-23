@@ -1,4 +1,30 @@
-<h1 class="text-center my-4">Check-in Form</h1>
-<form id="availability" class="input-group justify-content-center" method="post">
-    <input class="btn btn-primary col-md-2 my-2 shadow-none" type="submit" value="Submit"/>
-</form>
+<div class="container-fluid">
+    <h1 class="text-center my-4">Tour Check-in</h1>
+
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Tour</th>
+                    <th>Check in</th>
+                </tr>
+                <tbody>
+                    <% current_user.tours.order(:time).each do |data| %>
+                        <% if data.end_time > Time.zone.now %>
+                            <tr>
+                                <td><%= data.display %></td>
+                                <td>
+                                    <% if checked_in? data.id %>
+                                        Checked In
+                                    <% else %>
+                                        <%= button_to "Check In", method: :post, tour_id: data.id %>
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>    
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

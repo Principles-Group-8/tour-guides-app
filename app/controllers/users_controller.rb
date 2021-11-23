@@ -42,9 +42,17 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     @user = User.find(session[:user_id])
-    @user.points = @user.points + 1
-    @user.save
-    flash[:success] = "Points Updated"
+    @tour = Tour.find(params[:tour_id])
+    if @tour.time - 10*60 < Time.zone.now && @tour.time + 10*60 > Time.zone.now
+      @user.points = @user.points + 1
+      @user.save
+      @tour.checked_in_email << @user.email
+      @tour.save
+      flash[:success] = "Checked In"
+    else
+      flash[:danger] = "Not the right time"
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   def profile

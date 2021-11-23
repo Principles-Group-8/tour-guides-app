@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_11_042106) do
+ActiveRecord::Schema.define(version: 2021_11_23_065457) do
 
   create_table "tours", force: :cascade do |t|
     t.datetime "time", null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_11_11_042106) do
     t.string "note"
     t.boolean "weekly", default: false, null: false
     t.integer "weeks"
+    t.string "checked_in_email", default: "--- []\n"
   end
 
   create_table "tours_users", id: false, force: :cascade do |t|
