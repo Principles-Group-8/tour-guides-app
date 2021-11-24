@@ -8,31 +8,27 @@
             <h3 class="text-center">
                 Your Tours
             </h3>
-            <%= form_tag '/subboard_remove' do %>
-                <table class="table table-bordered text-center">
-                    <tbody>
-                        <%= collection_check_boxes(:user, :tour_ids, cur_user.tours.order(:time).all.select {|tour| tour.end_time > Time.zone.now}, :id, :display) do |tour| %>
+            <table class="table table-bordered text-center">
+                <tbody>
+                    <% cur_user.tours.order(:time).all.select {|tour| tour.end_time > Time.zone.now}.each do |tour| %>
+                        <%= form_tag '/subboard_remove' do %>
+                            <%= hidden_field_tag :tour_id , tour.id %>
                             <tr>
                                 <td>
-                                    <%= tour.label %>
+                                    <%= tour.display %>
                                 </td>
                                 <td>
-                                    <%= tour.check_box({class: "btn-check"}) %>
-                                    <label class="btn btn-outline-primary shadow-none" for="user_tour_ids_<%= tour.value %>">Post</label>
+                                    <%= submit_tag "Post", class: "btn btn-primary my-1 shadow-none" %>
                                 </td>
                             </tr> 
                         <% end %>
-                    </tbody>
-                </table>
-                <% if cur_user.tours.all.select{|tour| tour.end_time > Time.zone.now}.size != 0 %>
-                    <div class="text-center">
-                        <%= submit_tag "Post Tours to Board", class: "btn btn-primary my-1 shadow-none" %>
-                    </div>
-                <% else %>
-                    <h5 class="text-center">
-                        You have no currently assigned tours
-                    </h5>
-                <% end %>
+                    <% end %>
+                </tbody>
+            </table>
+            <% if cur_user.tours.all.select{|tour| tour.end_time > Time.zone.now}.size == 0 %>
+                <h5 class="text-center">
+                    You have no currently assigned tours
+                </h5>
             <% end %>
         </div>
 
@@ -40,31 +36,27 @@
             <h3 class="text-center">
                 Available Tours
             </h3>
-            <%= form_tag '/subboard_claim' do %>    
-                <table class="table table-bordered text-center">
-                    <tbody>       
-                        <%= collection_check_boxes(:user, :tour_ids, Tour.order(:time).all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now} , :id, :display) do |tour| %>
+            <table class="table table-bordered text-center">
+                <tbody>       
+                    <% Tour.order(:time).all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.each do |tour| %>
+                        <%= form_tag '/subboard_claim' do %>   
+                            <%= hidden_field_tag :tour_id , tour.id %> 
                             <tr>
                                 <td>
-                                    <%= tour.label %>
+                                    <%= tour.display %>
                                 </td>
                                 <td>
-                                    <%= tour.check_box({class: "btn-check"}) %>
-                                    <label class="btn btn-outline-primary shadow-none" for="user_tour_ids_<%= tour.value %>">Claim</label>
+                                <%= submit_tag "Claim", class: "btn btn-primary my-1 shadow-none" %>
                                 </td>
                             </tr> 
                         <% end %>
-                    </tbody>
-                </table>
-                <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.size != 0 %>
-                    <div class="text-center">
-                        <%= submit_tag "Claim Tours from Board", class: "btn btn-primary my-1 shadow-none" %>
-                    </div>
-                <% else %>
-                    <h5 class="text-center">
-                        There are no tours currently available to claim
-                    </h5>
-                <% end %>
+                    <% end %>
+                </tbody>
+            </table>
+            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.size == 0 %>
+                <h5 class="text-center">
+                    There are no tours currently available to claim
+                </h5>
             <% end %>
         </div>
     </div>

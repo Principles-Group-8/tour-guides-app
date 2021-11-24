@@ -37,18 +37,16 @@ class ToursController < ApplicationController
     def remove_guide
         check_admin()
         @tour = Tour.find(params[:tour])
-        params[:user][:user_ids][1..].each do |user|
-            @tour.users.delete(User.find(user))
-        end
+        @user = User.find(params[:user_id])
+        @tour.users.delete(@user)
         redirect_to "/tours/manage/#{params[:tour]}"
     end
 
     def add_guide
         check_admin()
         @tour = Tour.find(params[:tour])
-        params[:user][:user_ids][1..].each do |user|
-            @tour.users.append User.find(user)
-        end
+        @user = User.find(params[:user_id])
+        @tour.users.append @user
         redirect_to "/tours/manage/#{params[:tour]}"
     end
 

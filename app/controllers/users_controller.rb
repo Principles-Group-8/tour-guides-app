@@ -114,9 +114,8 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     user = User.find(session[:user_id])
-    params[:user][:tour_ids][1..].each do |tour|
-      user.tours.delete(Tour.find(tour))
-    end
+    @tour = Tour.find(params[:tour_id])
+    user.tours.delete(@tour)
     redirect_to users_subboard_path
   end 
 
@@ -125,9 +124,8 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     user = User.find(session[:user_id])
-    params[:user][:tour_ids][1..].each do |tour|
-      user.tours.append Tour.find(tour)
-    end
+    @tour = Tour.find(params[:tour_id])
+    user.tours.append @tour
     redirect_to users_subboard_path
   end
 

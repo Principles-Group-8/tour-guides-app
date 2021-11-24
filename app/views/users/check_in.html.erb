@@ -2,18 +2,18 @@
     <h1 class="text-center my-4">Tour Check-in</h1>
 
     <div class="row">
-        <div class="col-md-4 offset-md-4">
+        <div class="col-4 offset-4">
             <table class="table table-bordered">
                 <tr>
                     <th>Tour</th>
-                    <th>Check in</th>
+                    <th class="text-center">Check in</th>
                 </tr>
                 <tbody>
                     <% current_user.tours.order(:time).each do |data| %>
                         <% if data.end_time > Time.zone.now %>
                             <tr>
                                 <td><%= data.display %></td>
-                                <td>
+                                <td class="text-center">
                                     <% if checked_in? data.id %>
                                         Checked In
                                     <% else %>
