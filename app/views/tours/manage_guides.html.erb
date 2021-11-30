@@ -1,52 +1,54 @@
-<h1 class="text-center my-4">Manage Guides</h1>
-<h4 class="text-center my-4"><%= @tour.display %></h4>
-<div class="row">
-    <div class="col-4 offset-1 mb-5 mb-lg-0">
-        <h3 class="text-center">On Tour</h3>
-        <table class="table table-bordered text-center">
-            <tbody>
-                <% @tour.users.order(:last_name).all.each do |user| %>
-                    <tr>
-                        <td>
+<div class="container-fluid">
+    <h1 class="text-center my-4">Manage Guides</h1>
+    <h4 class="text-center my-4"><%= @tour.display %></h4>
+    <div class="row">
+        <div class="col-4 offset-1 mb-5 mb-lg-0">
+            <h3 class="text-center">On Tour</h3>
+            <table class="table table-bordered text-center">
+                <tbody>
+                    <% @tour.users.order(:last_name).all.each do |user| %>
+                        <tr>
+                            <td>
+                                <%= user.name_display %>
+                            </td>
+                            <td>
+                                <a href=<%= "/tours/remove_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
+                                    Remove
+                                </a>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <% if @tour.users.size == 0 %>
+                <h5 class="text-center">
+                    There are no guides on this tour
+                </h5>
+            <% end %>
+        </div>
+        <div class="col-4 offset-2 mb-3 mb-lg-0">
+            <h3 class="text-center">Not on Tour</h3>
+            <table class="table table-bordered text-center">
+                <tbody>
+                    <% User.order(:last_name).all.select{|user| !@tour.users.member?(user)}.each do |user| %>
+                        <tr>
+                            <td>
                             <%= user.name_display %>
-                        </td>
-                        <td>
-                            <a href=<%= "/tours/remove_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
-                                Remove
-                            </a>
-                        </td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
-        <% if @tour.users.size == 0 %>
-            <h5 class="text-center">
-                There are no guides on this tour
-            </h5>
-        <% end %>
-    </div>
-    <div class="col-4 offset-2 mb-3 mb-lg-0">
-        <h3 class="text-center">Not on Tour</h3>
-        <table class="table table-bordered text-center">
-            <tbody>
-                <% User.order(:last_name).all.select{|user| !@tour.users.member?(user)}.each do |user| %>
-                    <tr>
-                        <td>
-                        <%= user.name_display %>
-                        </td>
-                        <td>
-                            <a href=<%= "/tours/add_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
-                                Add
-                            </a>
-                        </td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
-        <% if User.all.select{|user| !@tour.users.member?(user)}.size == 0 %>
-            <h5 class="text-center">
-                All guides are assigned to this tour
-            </h5>
-        <% end %>
+                            </td>
+                            <td>
+                                <a href=<%= "/tours/add_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
+                                    Add
+                                </a>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <% if User.all.select{|user| !@tour.users.member?(user)}.size == 0 %>
+                <h5 class="text-center">
+                    All guides are assigned to this tour
+                </h5>
+            <% end %>
+        </div>
     </div>
 </div>

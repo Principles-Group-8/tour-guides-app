@@ -12,9 +12,9 @@
     <%= favicon_link_tag %>
   </head>
 
-  <body>
+  <body class="container-fluid">
     <%= render "layouts/navbar" %>
-    <div class="container">
+    <div>
       <% flash.each do |type, msg| %>
         <div class="alert alert-<%= type %>">
           <%= msg %>

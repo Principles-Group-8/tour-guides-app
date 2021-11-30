@@ -1,22 +1,24 @@
-<h1 class="text-center my-4">Tour Schedule</h1>
-<br/>
+<div class="container-fluid">
+  <h1 class="text-center my-4">Tour Schedule</h1>
+  <br/>
 
-<% cur_user = User.find(session[:user_id]) %>
+  <% cur_user = User.find(session[:user_id]) %>
 
-<div class="table">
-  <%= month_calendar do |date| %>
-    <div>
-      <%= date.day %>
-    </div>
-    <br/>
-    <% cur_user.tours.order(:time).all.each do |tour| %>
-      <% if tour.time.month == date.month && tour.time.day == date.day %>
-        <li class="list-group-item list-group-item-action list-group-item-dark">
-          <%= tour.time_display %>
-        </li>
-      <% else %>
-        <br/>
+  <div class="table">
+    <%= month_calendar do |date| %>
+      <div>
+        <%= date.day %>
+      </div>
+      <br/>
+      <% cur_user.tours.order(:time).all.each do |tour| %>
+        <% if tour.time.month == date.month && tour.time.day == date.day %>
+          <li class="list-group-item list-group-item-action list-group-item-dark">
+            <%= tour.time_display %>
+          </li>
+        <% else %>
+          <br/>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

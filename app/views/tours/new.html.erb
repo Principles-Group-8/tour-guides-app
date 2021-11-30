@@ -1,24 +1,26 @@
-<h1 class="text-center my-4">New Tour</h1>
-<div class="row">
-    <div class="d-flex justify-content-center input-group">
-        <div>
-            <%= form_with model: @tour, url: tours_create_path do |f| %>
-                <%= f.label 'time' %><br>
-                <%= f.datetime_field :time %><br>
-                <%= f.label 'hours' %><br>
-                <%= f.number_field :hours %><br>
-                <%= f.label 'guides' %><br>
-                <%= f.number_field :min_guides %><br>
-                <%= f.label 'location' %><br>
-                <%= f.select :location, ['SLC', 'HOG', 'Sarratt', 'Other'] %><br>
-                <%= f.label 'note' %><br>
-                <%= f.text_field :note, :size => 30 %><br>
-                <%= f.label 'weekly?' %>
-                <%= f.check_box :weekly %><br>
-                <%= f.label 'weeks' %><br>
-                <%= f.number_field :weeks %><br><br>
-                <%= f.submit "Create Tour", class: "btn btn-primary my-1 shadow-none" %>
-            <% end %>
+<div class="container-fluid">
+    <h1 class="text-center my-4">New Tour</h1>
+    <div class="row">
+        <div class="d-flex justify-content-center input-group">
+            <div>
+                <%= form_with model: @tour, url: tours_create_path do |f| %>
+                    <%= f.label 'time' %><br>
+                    <%= f.datetime_field :time %><br>
+                    <%= f.label 'hours' %><br>
+                    <%= f.number_field :hours %><br>
+                    <%= f.label 'guides' %><br>
+                    <%= f.number_field :min_guides %><br>
+                    <%= f.label 'location' %><br>
+                    <%= f.select :location, ['SLC', 'HOG', 'Sarratt', 'Other'] %><br>
+                    <%= f.label 'note' %><br>
+                    <%= f.text_field :note, :size => 30 %><br>
+                    <%= f.label 'weekly?' %>
+                    <%= f.check_box :weekly %><br>
+                    <%= f.label 'weeks' %><br>
+                    <%= f.number_field :weeks %><br><br>
+                    <%= f.submit "Create Tour", class: "btn btn-primary my-1 shadow-none" %>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>
