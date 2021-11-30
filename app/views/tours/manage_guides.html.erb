@@ -6,18 +6,16 @@
         <table class="table table-bordered text-center">
             <tbody>
                 <% @tour.users.order(:last_name).all.each do |user| %>
-                    <%= form_tag "/remove_guide" do %>
-                        <%= hidden_field_tag :tour , @tour.id %>
-                        <%= hidden_field_tag :user_id , user.id %>
-                        <tr>
-                            <td>
-                                <%= user.name_display %>
-                            </td>
-                            <td>
-                                <%= submit_tag "Remove", class: "btn btn-primary my-1 shadow-none" %>
-                            </td>
-                        </tr>
-                    <% end %>
+                    <tr>
+                        <td>
+                            <%= user.name_display %>
+                        </td>
+                        <td>
+                            <a href=<%= "/tours/remove_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
+                                Remove
+                            </a>
+                        </td>
+                    </tr>
                 <% end %>
             </tbody>
         </table>
@@ -32,18 +30,16 @@
         <table class="table table-bordered text-center">
             <tbody>
                 <% User.order(:last_name).all.select{|user| !@tour.users.member?(user)}.each do |user| %>
-                    <%= form_tag "/add_guide" do %>
-                        <%= hidden_field_tag :tour , @tour.id %>
-                        <%= hidden_field_tag :user_id , user.id %>
-                        <tr>
-                            <td>
-                            <%= user.name_display %>
-                            </td>
-                            <td>
-                            <%= submit_tag "Add", class: "btn btn-primary my-1 shadow-none"%>
-                            </td>
-                        </tr>
-                    <% end %>
+                    <tr>
+                        <td>
+                        <%= user.name_display %>
+                        </td>
+                        <td>
+                            <a href=<%= "/tours/add_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
+                                Add
+                            </a>
+                        </td>
+                    </tr>
                 <% end %>
             </tbody>
         </table>

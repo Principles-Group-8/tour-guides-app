@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   get 'tours/manage'
   get 'tours/:id', to: 'tours#delete'
   get 'tours/manage/:id', to: 'tours#manage_guides'
-  post 'remove_guide', to: 'tours#remove_guide'
-  post 'add_guide', to: 'tours#add_guide'
+  get 'tours/remove_guide/:tour_id/:user_id', to: 'tours#remove_guide'
+  get 'tours/add_guide/:tour_id/:user_id', to: 'tours#add_guide'
   get 'tours/view_guides/:id', to: 'tours#view_guides'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
