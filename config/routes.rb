@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get 'users/profile'
 
   get 'users/subboard'
-  post 'subboard_remove', to: 'users#subboard_remove'
-  post 'subboard_claim', to: 'users#subboard_claim'
+  get 'users/subboard_remove/:tour_id', to: 'users#subboard_remove'
+  get 'users/subboard_claim/:tour_id', to: 'users#subboard_claim'
   get 'users/points'
   get 'users/check_in'
   post 'users/check_in', to: 'users#check_in_post'

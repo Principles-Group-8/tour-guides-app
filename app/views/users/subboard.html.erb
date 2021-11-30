@@ -11,17 +11,16 @@
             <table class="table table-bordered text-center">
                 <tbody>
                     <% cur_user.tours.order(:time).all.select {|tour| tour.end_time > Time.zone.now}.each do |tour| %>
-                        <%= form_tag '/subboard_remove' do %>
-                            <%= hidden_field_tag :tour_id , tour.id %>
-                            <tr>
-                                <td>
-                                    <%= tour.display %>
-                                </td>
-                                <td>
-                                    <%= submit_tag "Post", class: "btn btn-primary my-1 shadow-none" %>
-                                </td>
-                            </tr> 
-                        <% end %>
+                        <tr>
+                            <td>
+                                <%= tour.display %>
+                            </td>
+                            <td>
+                                <a href=<%= "/users/subboard_remove/#{tour.id}" %> class="btn btn-primary my-1 shadow-none">
+                                    Post
+                                </a>
+                            </td>
+                        </tr> 
                     <% end %>
                 </tbody>
             </table>
@@ -39,17 +38,16 @@
             <table class="table table-bordered text-center">
                 <tbody>       
                     <% Tour.order(:time).all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.each do |tour| %>
-                        <%= form_tag '/subboard_claim' do %>   
-                            <%= hidden_field_tag :tour_id , tour.id %> 
-                            <tr>
-                                <td>
-                                    <%= tour.display %>
-                                </td>
-                                <td>
-                                <%= submit_tag "Claim", class: "btn btn-primary my-1 shadow-none" %>
-                                </td>
-                            </tr> 
-                        <% end %>
+                        <tr>
+                            <td>
+                                <%= tour.display %>
+                            </td>
+                            <td>
+                                <a href=<%= "/users/subboard_claim/#{tour.id}" %> class="btn btn-primary my-1 shadow-none">
+                                    Claim
+                                </a>
+                            </td>
+                        </tr> 
                     <% end %>
                 </tbody>
             </table>
