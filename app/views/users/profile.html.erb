@@ -4,7 +4,7 @@
 
   <% cur_user = User.find(session[:user_id]) %>
 
-  <div class="row">
+  <div style="overflow-x:auto;">
     <div class="table">
       <%= month_calendar do |date| %>
         <div>

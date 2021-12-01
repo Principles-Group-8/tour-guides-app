@@ -2,71 +2,73 @@
     <h1 class="text-center my-4">User Availability</h1>
     <form id="availability" class="input-group justify-content-center" method="post">
         <div class="row justify-content-center">
-            <table class="text-center col-md-8">
-                <thead>
-                    <td>Mon</td>
-                    <td>Tue</td>
-                    <td>Wed</td>
-                    <td>Thu</td>
-                    <td>Fri</td>
-                    <td>Sat</td>
-                    <td>Sun</td>
-                </thead>
-                <tbody>
-                    <% days = ["mon", "tues", "wed", "thur", "fri", "sat", "sun"] %>
-                    <% days.each { |day|%>
-                        <td class="form-control-md  " id=<%= day%>>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_9" name="<%= day%>_9">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_9"> 9:00 a.m. - 9:30 a.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_9:30" name="<%= day%>_9:30">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_9:30">9:30 a.m. - 10:00 a.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_10" name="<%= day%>_10">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_10">10:00 a.m. - 10:30 a.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_10:30" name="<%= day%>_10:30">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_10:30">10:30 a.m. - 11:00 a.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_11" name="<%= day%>_11">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_11">11:00 a.m. - 11:30 a.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_11:30" name="<%= day%>_11:30">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_11:30">11:30 a.m. - 12:00 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_12" name="<%= day%>_12">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_12">12:00 p.m. - 12:30 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_12:30" name="<%= day%>_12:30">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_12:30">12:30 p.m. - 1:00 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_1" name="<%= day%>_1">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_1">1:00 p.m. - 1:30 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_1:30" name="<%= day%>_1:30">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_1:30">1:30 p.m. - 2:00 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_2" name="<%= day%>_2">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_2">2:00 p.m. - 2:30 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_2:30" name="<%= day%>_2:30">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_2:30">2:30 p.m. - 3:00 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_3" name="<%= day%>_3">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_3">3:00 p.m. - 3:30 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_3:30" name="<%= day%>_3:30">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_3:30">3:30 p.m. - 4:00 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_4" name="<%= day%>_4">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_4">4:00 p.m. - 4:30 p.m.</label>
-                            <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_4:30" name="<%= day%>_4:30">
-                            <label class="btn btn-outline-primary shadow-none" for="<%= day%>_4:30">4:30 p.m. - 5:00 p.m.</label>
-                    </td>
-                    <% } %>
-                </tbody>
-            </table>
+            <div style="overflow-x:auto;">
+                <table class="text-center col-md-8">
+                    <thead>
+                        <td>Mon</td>
+                        <td>Tue</td>
+                        <td>Wed</td>
+                        <td>Thu</td>
+                        <td>Fri</td>
+                        <td>Sat</td>
+                        <td>Sun</td>
+                    </thead>
+                    <tbody>
+                        <% days = ["mon", "tues", "wed", "thur", "fri", "sat", "sun"] %>
+                        <% days.each { |day|%>
+                            <td class="form-control-md  " id=<%= day%>>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_9" name="<%= day%>_9">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_9"> 9:00 a.m. - 9:30 a.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_9:30" name="<%= day%>_9:30">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_9:30">9:30 a.m. - 10:00 a.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_10" name="<%= day%>_10">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_10">10:00 a.m. - 10:30 a.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_10:30" name="<%= day%>_10:30">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_10:30">10:30 a.m. - 11:00 a.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_11" name="<%= day%>_11">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_11">11:00 a.m. - 11:30 a.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_11:30" name="<%= day%>_11:30">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_11:30">11:30 a.m. - 12:00 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_12" name="<%= day%>_12">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_12">12:00 p.m. - 12:30 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_12:30" name="<%= day%>_12:30">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_12:30">12:30 p.m. - 1:00 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_1" name="<%= day%>_1">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_1">1:00 p.m. - 1:30 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_1:30" name="<%= day%>_1:30">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_1:30">1:30 p.m. - 2:00 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_2" name="<%= day%>_2">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_2">2:00 p.m. - 2:30 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_2:30" name="<%= day%>_2:30">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_2:30">2:30 p.m. - 3:00 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_3" name="<%= day%>_3">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_3">3:00 p.m. - 3:30 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_3:30" name="<%= day%>_3:30">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_3:30">3:30 p.m. - 4:00 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_4" name="<%= day%>_4">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_4">4:00 p.m. - 4:30 p.m.</label>
+                                <br>
+                                <input type="checkbox" class="btn-check" id="<%= day%>_4:30" name="<%= day%>_4:30">
+                                <label class="btn btn-outline-primary shadow-none" for="<%= day%>_4:30">4:30 p.m. - 5:00 p.m.</label>
+                        </td>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
             <div class="justify-content-center row">
             <input class="btn btn-primary col-md-2 my-2 shadow-none" type="submit" value="Submit"/>
             </div>
