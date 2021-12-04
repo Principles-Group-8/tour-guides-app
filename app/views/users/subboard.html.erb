@@ -37,7 +37,7 @@
             </h3>
             <table class="table table-bordered text-center">
                 <tbody>       
-                    <% Tour.order(:time).all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.each do |tour| %>
+                    <% Tour.order(:time).all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now && !tour.weekly}.each do |tour| %>
                         <tr>
                             <td>
                                 <%= tour.display %>
