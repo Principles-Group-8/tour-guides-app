@@ -62,4 +62,7 @@ class ToursController < ApplicationController
         params.require(:tour).except(:hours).permit(:time, :min_guides, :location, :note, :weekly, :weeks)
     end
 
+    def scheduler
+    end
+
 end
