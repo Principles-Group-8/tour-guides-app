@@ -17,11 +17,6 @@
                     <% end %>
                 </tbody>
             </table>
-            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.size == 0 %>
-                <h5 class="text-center">
-                    There are no tours currently available to claim
-                </h5>
-            <% end %>
         </div>
-        </div>
+    </div>
 </div>
