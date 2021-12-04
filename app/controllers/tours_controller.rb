@@ -50,6 +50,9 @@ class ToursController < ApplicationController
         redirect_to "/tours/manage/#{params[:tour_id]}"
     end
 
+    def scheduler
+    end
+
     private
 
     def check_admin
@@ -60,9 +63,6 @@ class ToursController < ApplicationController
 
     def tour_params
         params.require(:tour).except(:hours).permit(:time, :min_guides, :location, :note, :weekly, :weeks)
-    end
-
-    def scheduler
     end
 
 end
