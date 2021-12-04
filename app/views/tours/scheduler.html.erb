@@ -2,19 +2,21 @@
     <h1 class="text-center my-4">Tour Scheduler</h1>
 
     <div class="row">
-            <h3 class="text-center">
-                Weekly Tours
-            </h3>
-            <table class="table table-bordered text-center">
-                <tbody>       
-                    <% Tour.order(:time).all.select{|tour| tour.weekly && tour.time > Time.zone.now}.each do |tour| %>
-                        <tr>
-                            <td>
-                                <%= tour.display %> (<%= tour.weeks %> weeks)
-                            </td>
-                        </tr> 
-                    <% end %>
-                </tbody>
-            </table>
+        <h3 class="text-center">
+            Weekly Tours
+        </h3>
+        <table class="table table-bordered text-center">
+            <tbody>       
+                <% Tour.order(:time).all.select{|tour| tour.weekly && tour.time > Time.zone.now}.each do |tour| %>
+                    <tr>
+                        <td>
+                            <%= tour.display %> (<%= tour.weeks %> weeks)
+                        </td>
+                    </tr> 
+                <% end %>
+            </tbody>
+        </table>
     </div>
+
+    <%= button_to "Schedule", method: :post %>
 </div>

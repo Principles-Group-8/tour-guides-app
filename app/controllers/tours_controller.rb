@@ -54,7 +54,14 @@ class ToursController < ApplicationController
     end
 
     def scheduler_post
-        tours = Tour.where()
+        tours = Tour.find_by_weekly(true)
+        scheduler = Hash.new
+
+        tours.each do |tour|
+            scheduler[tour] = Array.new
+        end
+
+        
     end
 
     private
