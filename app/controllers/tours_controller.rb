@@ -54,7 +54,7 @@ class ToursController < ApplicationController
     end
 
     def scheduler_post
-        tours = Tour.find_by_weekly(true)
+        tours = Tour.select{|tour| tour.weekly}
         scheduler = Hash.new
 
         tours.each do |tour|
@@ -73,7 +73,7 @@ class ToursController < ApplicationController
                 if(admin.is_available(tour.availability))
                     scheduler[tour].push(admin)
                     scheduled.push(admin)
-                    admins.remove(admin)
+                    admins.delete(admin)
                     found = true
                     break
                 end
@@ -94,7 +94,7 @@ class ToursController < ApplicationController
                 if(guide.is_available(tour.availability))
                     scheduler[tour].push(guide)
                     scheduled.push(guide)
-                    guides.remove(guide)
+                    guides.delete(guide)
                     if(scheduler[tour].length >= needed)
                         filled = true
                         break
@@ -111,7 +111,7 @@ class ToursController < ApplicationController
                 if(guide.is_available(tour.availability))
                     scheduler[tour].push(guide)
                     scheduled.push(guide)
-                    guides.remove(guide)
+                    guides.delete(guide)
                     break
                 end
             end
@@ -133,27 +133,11 @@ class ToursController < ApplicationController
             tour.delete
         end
 
-        #go through each tour and add an available administrator to each
-        #if no available administrator
-            #go back through already scheduled administrators and find available one
-            #take that administrator and re-schedule for tour that administrator was taken from
-            #if no available administrators, just move on (fail case)
-        #once there's an admin per tour, then add remaining admins to regular tour guide pool
-
-        #calculate needed number of guides per tour (total guides (with availability) / total tours) and subtract 2 (stored as variable needed)
-
-        #go through each tour and add guides until needed is hit
-        #if no available guides with that tour availability and needed is not hit
-            #go back through already scheduled guides and find available one
-            #take that guide and re-schedule to fill that spot for the tour that guide was taken from
-        #if there's not enough guides in the whole system to fill a tour
-            #change needed to the max amount of guides that can fit there and keep going with scheduling
-        #once needed is met per tour, attempt to assign all remaining guides to any spot they're available for
-
-        #list guides in UI that couldn't be scheduled
-        #create tours and assign guides
-
-        flash[:danger] = "The following guides were not scheduled: #{guides.to_s}"
+        temp = "The following guides were not scheduled:"
+        guides.each do |guide|
+            temp +=  " " + guide.name_display + ","
+        end
+        flash[:danger] = temp
         redirect_to tours_scheduler_path
 
     end
