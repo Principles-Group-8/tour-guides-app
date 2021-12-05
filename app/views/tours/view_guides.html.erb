@@ -7,12 +7,24 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <th class="text-center">
+                            Checked In?
+                        </th>
                     </tr>
                     <tbody>
                         <% @tour.users.order(:last_name).each do |user| %>
                         <tr>
                             <td><%= user.name_display %></td>
                             <td><%= user.email %></td>
+                            <td class="text-center">
+                                <% if (@tour.checked_in_email.include? user.email) %>
+                                    Yes
+                                <% else %>
+                                    <a href=<%= "/users/manual_check_in/#{user.id}/#{@tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
+                                    Check In
+                                    </a>
+                                <% end %>
+                                </td>
                         </tr>
                         <% end %>
                     </tbody>
