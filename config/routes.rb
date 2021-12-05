@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   post 'tours/create'
   get 'tours/manage'
   get 'tours/scheduler', to: 'tours#scheduler'
+  post 'tours/scheduler', to: 'tours#scheduler_post'
   get 'tours/:id', to: 'tours#delete'
   get 'tours/manage/:id', to: 'tours#manage_guides'
   get 'tours/remove_guide/:tour_id/:user_id', to: 'tours#remove_guide'
