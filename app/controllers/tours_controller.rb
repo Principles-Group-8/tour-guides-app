@@ -72,45 +72,69 @@ class ToursController < ApplicationController
         admins = User.select{|admin| admin.administrator && admin.has_availability}
         guides = User.select{|guide| !guide.administrator && guide.has_availability}
 
-        scheduled = Array.new
-
-        tours.each do |tour|
-            found = false
-
-            admins.each do |admin|
+        adminAvailability = Hash.new
+        admins.each do |admin|
+            available = 0
+            tours.each do |tour|
                 if(admin.is_available(tour.availability))
+                    available += 1
+                end
+            end
+            adminAvailability[admin] = available
+        end
+
+        adminAvailability.sort_by{|k, v| v}.each do |admin, _|
+            tours.each do |tour|
+                if(admin.is_available(tour.availability) && scheduler[tour].length == 0)
                     scheduler[tour].push(admin)
-                    scheduled.push(admin)
                     admins.delete(admin)
-                    found = true
                     break
                 end
             end
-
-            if(!found)
-            end
-            
         end
 
-        guides = guides.concat(admins)
-
-        needed = guides.length() - 2
-
+        tourAvailability = Hash.new
         tours.each do |tour|
-            filled = false
+            available = 0
             guides.each do |guide|
                 if(guide.is_available(tour.availability))
-                    scheduler[tour].push(guide)
-                    scheduled.push(guide)
-                    guides.delete(guide)
-                    if(scheduler[tour].length >= needed)
-                        filled = true
+                    available += 1
+                end
+            end
+            tourAvailability[guide] = available
+        end
+
+        guideAvailability = Hash.new
+        guides.each do |guide|
+            available = 0
+            tours.each do |tour|
+                if(guide.is_available(tour.availability))
+                    available += 1
+                end
+            end
+            guideAvailability[tour] = available
+        end
+
+        filled = Hash.new
+        tours.each do |tour|
+            filled[tour] = false
+        end
+
+        while(any_false(filled))
+            tourAvailability.sort_by{|k, v| v}.each do |tour, _|
+                guideAvailability.sort_by{|k, v| v}.each do |guide, _|
+                    found = false
+                    if(guide.is_available(tour.availability) && !filled[tour])
+                        scheduler[tour].push(guide)
+                        guides.delete(guide)
+                        guideAvailability.delete(guide)
+                        found = true
                         break
                     end
                 end
-            end
-
-            if(!filled)
+                if(!found)
+                    filled[tour] = true
+                end
             end
         end
 
@@ -118,7 +142,6 @@ class ToursController < ApplicationController
             tours.each do |tour|
                 if(guide.is_available(tour.availability))
                     scheduler[tour].push(guide)
-                    scheduled.push(guide)
                     guides.delete(guide)
                     break
                 end
@@ -152,6 +175,10 @@ class ToursController < ApplicationController
 
     private
 
+    def any_false()
+
+    end
+    
     def check_admin
         if !session[:user_id] || !User.find(session[:user_id]).administrator
             redirect_to root_path
