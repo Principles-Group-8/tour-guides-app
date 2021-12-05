@@ -7,7 +7,7 @@
         </h3>
         <table class="table table-bordered text-center">
             <tbody>       
-                <% Tour.order(:time).all.select{|tour| tour.weekly && tour.time > Time.zone.now}.each do |tour| %>
+                <% Tour.order(:time).all.select{|tour| tour.weekly && tour.time > current_time}.each do |tour| %>
                     <tr>
                         <td>
                             <%= tour.display %> (<%= tour.weeks %> weeks)
