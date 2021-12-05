@@ -168,6 +168,10 @@ class UsersController < ApplicationController
   def make_admin
     check_admin()
     @user = User.find(params[:id])
+    if @user == User.find(session[:user_id])
+      flash[:danger] = "You cannot revoke your own admin status"
+      redirect_back(fallback_location: root_path)
+    end
     @user.administrator = true
     @user.save
     redirect_back(fallback_location: root_path)
