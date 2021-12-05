@@ -61,20 +61,62 @@ class ToursController < ApplicationController
             scheduler[tour] = Array.new
         end
 
-        admins = User.find_by_administrator(true)
+        admins = User.select{|admin| admin.administrator && admin.has_availability}
         scheduled = Array.new
-        guides = User.find_by_administrator(false)
+        guides = User.select{|guide| !guide.administrator && guide.has_availability}
 
         tours.each do |tour|
             found = false
 
             admins.each do |admin|
                 if(admin.is_available(tour.availability))
-                    
+                    scheduler[tour].push(admin)
+                    scheduled.push(admin)
+                    admins.remove(admin)
+                    found = true
+                    break
+                end
+            end
+
+            if(!found)
+            end
+            
+        end
+
+        guides = guides.concat(admins)
+
+        needed = guides.length() - 2
+
+        tours.each do |tour|
+            filled = false
+            guides.each do |guide|
+                if(guide.is_available(tour.availability))
+                    scheduler[tour].push(guide)
+                    scheduled.push(guide)
+                    guides.remove(guide)
+                    if(scheduler[tour])
+                        filled = true
+                        break
+                    end
+                end
+            end
+
+            if(!filled)
+            end
+        end
+
+        guides.each do |guide|
+            tours.each do |tour|
+                if(guide.is_available(tour.availability))
+                    scheduler[tour].push(guide)
+                    scheduled.push(guide)
+                    guides.remove(guide)
+                    break
                 end
             end
         end
 
+        
         #go through each tour and add an available administrator to each
         #if no available administrator
             #go back through already scheduled administrators and find available one
