@@ -20,4 +20,13 @@ class User < ApplicationRecord
       "#{first_name} #{last_name}"
     end
 
+    def is_available(times)
+      times.each do |time|
+        if !send(time)
+          return false
+        end
+      end
+      true
+    end
+
 end
