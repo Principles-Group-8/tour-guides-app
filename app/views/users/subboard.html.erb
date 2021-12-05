@@ -10,7 +10,7 @@
             </h3>
             <table class="table table-bordered text-center">
                 <tbody>
-                    <% cur_user.tours.order(:time).all.select {|tour| tour.end_time > Time.zone.now}.each do |tour| %>
+                    <% cur_user.tours.order(:time).all.select {|tour| tour.end_time > current_time}.each do |tour| %>
                         <tr>
                             <td>
                                 <%= tour.display %>
@@ -24,7 +24,7 @@
                     <% end %>
                 </tbody>
             </table>
-            <% if cur_user.tours.all.select{|tour| tour.end_time > Time.zone.now}.size == 0 %>
+            <% if cur_user.tours.all.select{|tour| tour.end_time > current_time}.size == 0 %>
                 <h5 class="text-center">
                     You have no currently assigned tours
                 </h5>
@@ -37,7 +37,7 @@
             </h3>
             <table class="table table-bordered text-center">
                 <tbody>       
-                    <% Tour.order(:time).all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now && !tour.weekly}.each do |tour| %>
+                    <% Tour.order(:time).all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > current_time && !tour.weekly}.each do |tour| %>
                         <tr>
                             <td>
                                 <%= tour.display %>
@@ -51,7 +51,7 @@
                     <% end %>
                 </tbody>
             </table>
-            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > Time.zone.now}.size == 0 %>
+            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > current_time}.size == 0 %>
                 <h5 class="text-center">
                     There are no tours currently available to claim
                 </h5>

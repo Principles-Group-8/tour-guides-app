@@ -10,7 +10,7 @@
                 </tr>
                 <tbody>
                     <% current_user.tours.order(:time).each do |data| %>
-                        <% if data.end_time > Time.zone.now %>
+                        <% if data.end_time > current_time %>
                             <tr>
                                 <td><%= data.display %></td>
                                 <td class="text-center">

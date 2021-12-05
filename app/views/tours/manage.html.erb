@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% Tour.order(:time).all.select{|tour| tour.end_time > Time.zone.now}.each do |tour| %>
+                        <% Tour.order(:time).all.select{|tour| tour.end_time > current_time}.each do |tour| %>
                             <tr>
                                 <td>
                                     <%= tour.date_display %>
@@ -54,7 +54,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% Tour.order(:time).all.select{|tour| tour.end_time < Time.zone.now}.each do |tour| %>
+                        <% Tour.order(:time).all.select{|tour| tour.end_time < current_time}.each do |tour| %>
                             <tr>
                                 <td>
                                     <%= tour.date_display %>
