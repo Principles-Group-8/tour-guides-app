@@ -153,6 +153,9 @@ class ToursController < ApplicationController
         #list guides in UI that couldn't be scheduled
         #create tours and assign guides
 
+        flash[:danger] = "The following guides were not scheduled: #{guides.to_s}"
+        redirect_to tours_scheduler_path
+
     end
 
     private
