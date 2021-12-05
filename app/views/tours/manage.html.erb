@@ -12,7 +12,10 @@
             <button class="myBtn btn btn-primary shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pastTours" aria-expanded="false" aria-controls="pastTours">
                 Past Tours
             </button>
-            <div class="collapse show" id="upcomingTours" data-bs-parent="#tourTables">
+            <button class="myBtn btn btn-primary shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#weeklyTours" aria-expanded="false" aria-controls="weeklyTours">
+                Weekly Tours
+            </button>
+            <div class="collapse show" id="upcomingTours" data-bs-parent="#tourTables" style="overflow-x:auto;">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -23,7 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% Tour.order(:time).all.select{|tour| tour.end_time > current_time}.each do |tour| %>
+                        <% Tour.order(:time).all.select{|tour| !tour.weekly && tour.end_time > current_time}.each do |tour| %>
                             <tr>
                                 <td>
                                     <%= tour.date_display %>
@@ -46,7 +49,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="collapse" id="pastTours" data-bs-parent="#tourTables">
+            <div class="collapse" id="pastTours" data-bs-parent="#tourTables" style="overflow-x:auto;">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -57,7 +60,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% Tour.order(:time).all.select{|tour| tour.end_time < current_time}.each do |tour| %>
+                        <% Tour.order('time DESC').all.select{|tour| !tour.weekly && tour.end_time < current_time}.each do |tour| %>
                             <tr>
                                 <td>
                                     <%= tour.date_display %>
@@ -69,6 +72,38 @@
                                     <a href=<%= "/tours/view_guides/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
                                     Click to View Guides
                                     </a>
+                                </td>
+                                <td class="text-center">
+                                    <a href=<%= "#{tour.id}" %> class="btn btn-danger btn-sm rounded-2 shadow-none" onclick="return confirm('Are you sure you want to delete this tour?')">
+                                    Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="collapse" id="weeklyTours" data-bs-parent="#tourTables" style="overflow-x:auto;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tour Day</th>
+                            <th>Tour Time</th>
+                            <th class="text-center">Number of Weeks</th>
+                            <th class="text-center">Delete Tour</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% Tour.order(:time).all.select{|tour| tour.weekly}.each do |tour| %>
+                            <tr>
+                                <td>
+                                    <%= tour.day_display %>
+                                </td>
+                                <td>
+                                    <%= tour.time_display %>
+                                </td>
+                                <td class="text-center">
+                                    <%= tour.weeks %>
                                 </td>
                                 <td class="text-center">
                                     <a href=<%= "#{tour.id}" %> class="btn btn-danger btn-sm rounded-2 shadow-none" onclick="return confirm('Are you sure you want to delete this tour?')">

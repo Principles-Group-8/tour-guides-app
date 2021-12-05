@@ -5,6 +5,10 @@ class Tour < ApplicationRecord
         "#{time.strftime('%A')} #{time.month}/#{time.day}"
     end
 
+    def day_display
+        "#{time.strftime('%A')}"
+    end
+
     def display
         "#{time.strftime('%A')} #{time.month}/#{time.day} #{time.strftime('%-I:%M')} - #{end_time.strftime('%-I:%M %p')}"
     end
