@@ -95,6 +95,16 @@ class UsersController < ApplicationController
 
   def list
     check_admin()
+    User.all.each do |user|
+      absences = 0
+      user.tours.all.select {|tour| tour.end_time < current_time}.each do |tour|
+        if (!tour.checked_in_email.include? user.email)
+          absences = absences + 1
+        end
+        user.absences = absences
+        user.save
+      end
+    end
   end
 
   def login_submit
