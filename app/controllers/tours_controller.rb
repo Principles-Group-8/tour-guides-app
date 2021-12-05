@@ -24,6 +24,14 @@ class ToursController < ApplicationController
         redirect_back(fallback_location: root_path)
     end
 
+    def delete_all
+        check_admin()
+        Tour.all.each do |tour|
+            tour.delete
+        end
+        redirect_back(fallback_location: root_path)
+    end
+
     def manage_guides
         check_admin()
         @tour = Tour.find(params[:id])

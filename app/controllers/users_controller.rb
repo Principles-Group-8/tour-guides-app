@@ -107,6 +107,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def reset_points
+    check_admin()
+    User.all.each do |user|
+      user.points = 0
+      user.save
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
   def login_submit
     @user = User.find_by_email(params[:email])
     if !!@user && @user.authenticate(params[:password])
