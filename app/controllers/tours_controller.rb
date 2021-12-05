@@ -93,6 +93,8 @@ class ToursController < ApplicationController
             end
         end
 
+        guides = guides.concat(admins)
+
         tourAvailability = Hash.new
         tours.each do |tour|
             available = 0
@@ -101,7 +103,7 @@ class ToursController < ApplicationController
                     available += 1
                 end
             end
-            tourAvailability[guide] = available
+            tourAvailability[tour] = available
         end
 
         guideAvailability = Hash.new
@@ -112,7 +114,7 @@ class ToursController < ApplicationController
                     available += 1
                 end
             end
-            guideAvailability[tour] = available
+            guideAvailability[guide] = available
         end
 
         filled = Hash.new
@@ -122,9 +124,12 @@ class ToursController < ApplicationController
 
         while(any_false(filled))
             tourAvailability.sort_by{|k, v| v}.each do |tour, _|
+                if(filled[tour])
+                    next
+                end
+                found = false
                 guideAvailability.sort_by{|k, v| v}.each do |guide, _|
-                    found = false
-                    if(guide.is_available(tour.availability) && !filled[tour])
+                    if(guide.is_available(tour.availability))
                         scheduler[tour].push(guide)
                         guides.delete(guide)
                         guideAvailability.delete(guide)
@@ -137,16 +142,6 @@ class ToursController < ApplicationController
                 end
             end
         end
-
-        # guides.each do |guide|
-        #     tours.each do |tour|
-        #         if(guide.is_available(tour.availability))
-        #             scheduler[tour].push(guide)
-        #             guides.delete(guide)
-        #             break
-        #         end
-        #     end
-        # end
 
         tours.each do |tour|
             for week in 0..(tour.weeks - 1)
@@ -183,7 +178,7 @@ class ToursController < ApplicationController
         end
         false
     end
-    
+
     def check_admin
         if !session[:user_id] || !User.find(session[:user_id]).administrator
             redirect_to root_path
