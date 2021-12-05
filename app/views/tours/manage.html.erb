@@ -78,5 +78,8 @@
                 </table>
             </div>
         </div>
+        <div class="d-flex justify-content-center my-3">
+            <%=button_to "Delete All Tours", tours_delete_all_path, method: :get, class: "btn btn-danger btn rounded-2 shadow-none", onclick: "return confirm('Are you sure you want to delete all tours?')"%>
+        </div>
     </div>
 </div>
