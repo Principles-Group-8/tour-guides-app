@@ -61,7 +61,37 @@ class ToursController < ApplicationController
             scheduler[tour] = Array.new
         end
 
-        
+        admins = User.find_by_administrator(true)
+        guides = User.find_by_administrator(false)
+
+        tours.each do |tour|
+            admins.each do |admin|
+                if(admin.is_available(tour.availability))
+
+                end
+            end
+        end
+
+        #go through each tour and add an available administrator to each
+        #if no available administrator
+            #go back through already scheduled administrators and find available one
+            #take that administrator and re-schedule for tour that administrator was taken from
+            #if no available administrators, just move on (fail case)
+        #once there's an admin per tour, then add remaining admins to regular tour guide pool
+
+        #calculate needed number of guides per tour (total guides (with availability) / total tours) and subtract 2 (stored as variable needed)
+
+        #go through each tour and add guides until needed is hit
+        #if no available guides with that tour availability and needed is not hit
+            #go back through already scheduled guides and find available one
+            #take that guide and re-schedule to fill that spot for the tour that guide was taken from
+        #if there's not enough guides in the whole system to fill a tour
+            #change needed to the max amount of guides that can fit there and keep going with scheduling
+        #once needed is met per tour, attempt to assign all remaining guides to any spot they're available for
+
+        #list guides in UI that couldn't be scheduled
+        #create tours and assign guides
+
     end
 
     private
