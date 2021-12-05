@@ -62,8 +62,9 @@ class ToursController < ApplicationController
         end
 
         admins = User.select{|admin| admin.administrator && admin.has_availability}
-        scheduled = Array.new
         guides = User.select{|guide| !guide.administrator && guide.has_availability}
+
+        scheduled = Array.new
 
         tours.each do |tour|
             found = false
@@ -94,7 +95,7 @@ class ToursController < ApplicationController
                     scheduler[tour].push(guide)
                     scheduled.push(guide)
                     guides.remove(guide)
-                    if(scheduler[tour])
+                    if(scheduler[tour].length >= needed)
                         filled = true
                         break
                     end
@@ -116,7 +117,22 @@ class ToursController < ApplicationController
             end
         end
 
-        
+        tours.each do |tour|
+            for week in 0..(tour.weeks - 1)
+                tempTour = tour.dup()
+                tempTour.weekly = false
+                tempTour.weeks = 1
+                tempTour.time += week.weeks
+                tempTour.end_time += week.weeks
+                tempTour.min_guides = scheduler[tour].length
+                tempTour.save
+                scheduler[tour].each do |guide|
+                    tempTour.users.append guide
+                end
+            end
+            tour.delete
+        end
+
         #go through each tour and add an available administrator to each
         #if no available administrator
             #go back through already scheduled administrators and find available one
