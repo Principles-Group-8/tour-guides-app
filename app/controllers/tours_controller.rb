@@ -62,12 +62,15 @@ class ToursController < ApplicationController
         end
 
         admins = User.find_by_administrator(true)
+        scheduled = Array.new
         guides = User.find_by_administrator(false)
 
         tours.each do |tour|
+            found = false
+
             admins.each do |admin|
                 if(admin.is_available(tour.availability))
-
+                    
                 end
             end
         end
