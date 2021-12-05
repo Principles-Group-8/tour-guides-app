@@ -55,6 +55,17 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def manual_check_in
+    check_admin()
+    @user = User.find(params[:user_id])
+    @tour = Tour.find(params[:tour_id])
+    @user.points = @user.points + 1
+    @user.save
+    @tour.checked_in_email << @user.email
+    @tour.save
+    redirect_back(fallback_location: root_path)
+  end
+
   def profile
     if !session[:user_id]
       redirect_to root_path
