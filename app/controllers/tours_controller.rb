@@ -138,15 +138,15 @@ class ToursController < ApplicationController
             end
         end
 
-        guides.each do |guide|
-            tours.each do |tour|
-                if(guide.is_available(tour.availability))
-                    scheduler[tour].push(guide)
-                    guides.delete(guide)
-                    break
-                end
-            end
-        end
+        # guides.each do |guide|
+        #     tours.each do |tour|
+        #         if(guide.is_available(tour.availability))
+        #             scheduler[tour].push(guide)
+        #             guides.delete(guide)
+        #             break
+        #         end
+        #     end
+        # end
 
         tours.each do |tour|
             for week in 0..(tour.weeks - 1)
@@ -175,8 +175,13 @@ class ToursController < ApplicationController
 
     private
 
-    def any_false()
-
+    def any_false(hash)
+        hash.each do |_, v|
+            if v == false
+                return true
+            end
+        end
+        false
     end
     
     def check_admin
