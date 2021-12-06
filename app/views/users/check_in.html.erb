@@ -17,7 +17,7 @@
                                     <% if checked_in? data.id %>
                                         Checked In
                                     <% else %>
-                                        <%= button_to "Check In", method: :post, tour_id: data.id %>
+                                        <%= button_to "Check In", {method: :post, tour_id: data.id} , {class: "btn btn-primary btn-sm rounded-2 shadow-none"} %>
                                     <% end %>
                                 </td>
                             </tr>
