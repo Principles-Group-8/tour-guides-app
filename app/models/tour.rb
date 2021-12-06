@@ -17,6 +17,10 @@ class Tour < ApplicationRecord
         "#{time.strftime('%-I:%M')} - #{end_time.strftime('%-I:%M %p')}"
     end
 
+    def today?
+        time < current_time + 1.day
+    end
+
     def availability
         case time.strftime('%A')
         when "Monday"
