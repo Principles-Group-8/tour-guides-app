@@ -60,6 +60,10 @@ class ToursControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  
+  test "availability method should give correct value" do
+    tour = Tour.new(time: "2022-02-11T12:30", end_time: "2022-02-11T13:30", min_guides: 10, location: "HOG")
+    assert tour.save
+    assert tour.availability == ["fri_12:30", "fri_1"]
+  end
 
 end

@@ -1,3 +1,5 @@
+<% @user = current_user %>
+
 <div class="container-fluid">
     <h1 class="text-center my-4">User Availability</h1>
     <form id="availability" class="input-group justify-content-center" method="post">
@@ -16,52 +18,52 @@
                     <% days = ["mon", "tues", "wed", "thur", "fri", "sat", "sun"] %>
                     <% days.each { |day|%>
                         <td class="form-control-md  " id=<%= day%>>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_9" name="<%= day%>_9">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_9" name="<%= day%>_9" <%= @user.send("#{day}_9") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_9"> 9:00 a.m. - 9:30 a.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_9:30" name="<%= day%>_9:30">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_9:30" name="<%= day%>_9:30" <%= @user.send("#{day}_9:30") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_9:30">9:30 a.m. - 10:00 a.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_10" name="<%= day%>_10">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_10" name="<%= day%>_10" <%= @user.send("#{day}_10") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_10">10:00 a.m. - 10:30 a.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_10:30" name="<%= day%>_10:30">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_10:30" name="<%= day%>_10:30" <%= @user.send("#{day}_10:30") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_10:30">10:30 a.m. - 11:00 a.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_11" name="<%= day%>_11">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_11" name="<%= day%>_11" <%= @user.send("#{day}_11") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_11">11:00 a.m. - 11:30 a.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_11:30" name="<%= day%>_11:30">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_11:30" name="<%= day%>_11:30" <%= @user.send("#{day}_11:30") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_11:30">11:30 a.m. - 12:00 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_12" name="<%= day%>_12">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_12" name="<%= day%>_12" <%= @user.send("#{day}_12") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_12">12:00 p.m. - 12:30 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_12:30" name="<%= day%>_12:30">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_12:30" name="<%= day%>_12:30" <%= @user.send("#{day}_12:30") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_12:30">12:30 p.m. - 1:00 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_1" name="<%= day%>_1">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_1" name="<%= day%>_1" <%= @user.send("#{day}_1") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_1">1:00 p.m. - 1:30 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_1:30" name="<%= day%>_1:30">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_1:30" name="<%= day%>_1:30" <%= @user.send("#{day}_1:30") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_1:30">1:30 p.m. - 2:00 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_2" name="<%= day%>_2">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_2" name="<%= day%>_2" <%= @user.send("#{day}_2") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_2">2:00 p.m. - 2:30 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_2:30" name="<%= day%>_2:30">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_2:30" name="<%= day%>_2:30" <%= @user.send("#{day}_2:30") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_2:30">2:30 p.m. - 3:00 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_3" name="<%= day%>_3">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_3" name="<%= day%>_3" <%= @user.send("#{day}_3") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_3">3:00 p.m. - 3:30 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_3:30" name="<%= day%>_3:30">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_3:30" name="<%= day%>_3:30" <%= @user.send("#{day}_3:30") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_3:30">3:30 p.m. - 4:00 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_4" name="<%= day%>_4">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_4" name="<%= day%>_4" <%= @user.send("#{day}_4") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_4">4:00 p.m. - 4:30 p.m.</label>
                             <br>
-                            <input type="checkbox" class="btn-check" id="<%= day%>_4:30" name="<%= day%>_4:30">
+                            <input type="checkbox" class="btn-check" id="<%= day%>_4:30" name="<%= day%>_4:30" <%= @user.send("#{day}_4:30") ? "checked" : nil %>>
                             <label class="btn btn-outline-primary shadow-none" for="<%= day%>_4:30">4:30 p.m. - 5:00 p.m.</label>
                     </td>
                     <% } %>

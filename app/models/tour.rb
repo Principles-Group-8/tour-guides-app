@@ -57,15 +57,30 @@ class Tour < ApplicationRecord
         when "Sunday"
             base = "sun_"
         end
+
         array = []
+
         start_num = time.strftime('%I').to_i
+        start_thirty = time.strftime('%M').to_i >= 30
+
         end_num = end_time.strftime('%I').to_i
-        add_thirty = end_time.strftime('%M').to_i >= 30
+        add_thirty = end_time.strftime('%M').to_i > 30
+        if end_num < 9
+            end_num += 12
+        end
+
+        if start_thirty
+            array << base + start_num.to_s + ":30"
+            start_num += 1
+        end
         
         for hour in start_num..end_num do
-            array << base + hour.to_s
+            if hour > 12
+                adj_hour = hour - 12
+            end
+            array << base + adj_hour.to_s
             if hour != end_num || add_thirty
-                array << base + hour.to_s + ":30"
+                array << base + adj_hour.to_s + ":30"
             end
         end
 
