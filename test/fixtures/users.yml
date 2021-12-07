@@ -1,10 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 normal:
-  email: normal@mail.com
+  email: normal@vanderbilt.edu
   password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
 
 admin:
-  email: admin@mail.com
+  email: admin@vanderbilt.edu
   password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
   administrator: true

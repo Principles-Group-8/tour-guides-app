@@ -2,20 +2,22 @@
     <h1 class="text-center my-4">Points</h1>
     <div class="row">
         <div class="col-md-4 offset-md-4">
-            <table class="table table-bordered my-2">
-                <tr>
-                    <th>Name</th>
-                    <th>Points</th>
-                </tr>
-                <tbody>
-                    <% @data.order(:last_name).each do |data| %>
+            <div class="white-background">
+                <table class="table table-bordered my-2">
                     <tr>
-                        <td><%= data.name_display %></td>
-                        <td><%= data.points %></td>
+                        <th>Name</th>
+                        <th>Points</th>
                     </tr>
-                    <% end %>
-                </tbody>
-            </table>
+                    <tbody>
+                        <% @data.order(:last_name).each do |data| %>
+                        <tr>
+                            <td><%= data.name_display %></td>
+                            <td><%= data.points %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

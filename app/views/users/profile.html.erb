@@ -4,21 +4,22 @@
 
   <% cur_user = User.find(session[:user_id]) %>
 
-  <div class="table" style="overflow-x:auto;">
-    <%= month_calendar do |date| %>
-      <div>
-        <%= date.day %>
-      </div>
-      <br/>
-      <% cur_user.tours.order(:time).all.each do |tour| %>
-        <% if tour.time.month == date.month && tour.time.day == date.day %>
-          <li class="list-group-item list-group-item-action list-group-item-dark">
-            <%= tour.time_display %>
-          </li>
-        <% else %>
-          <br/>
-        <% end %>
+    <div class="table white-background" style="overflow-x:auto">
+      <%= month_calendar(events: cur_user.tours, attribute: :time) do |date, tours| %>
+        <div>
+          <%= date.day %>
+        </div>
+        <br/>
+          <% tours.each do |tour| %>
+            <li class="list-group-item list-group-item-action list-group-item-dark" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdown<%= tour.id %>">
+              <%= tour.time_display %>
+            </li>
+            <div class="dropdown-menu" aria-labelledby="dropdown<%= tour.id %>" style="padding:10px;">
+              <%= simple_format(tour.details_display) %>
+            </div>
+          <% end %>
+        <br/>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
