@@ -14,11 +14,23 @@ class Tour < ApplicationRecord
     end
 
     def time_display
-        "#{time.strftime('%-I:%M')} - #{end_time.strftime('%-I:%M %p')}"
+        "#{time.strftime('%-I:%M %p')} - #{end_time.strftime('%-I:%M %p')}"
+    end
+
+    def details_display
+        s = "Location: #{location}"
+        if !note.empty?
+            s += "\nNotes: #{note}"
+        end
+        s
     end
 
     def today?
         time < current_time + 1.day
+    end
+
+    def start_time
+        current_time
     end
 
     def availability
