@@ -3,9 +3,10 @@
 
     <div class="row">
         <div class="col-md-4 offset-md-4">
-            <table class="table table-bordered">
+            <table class="table table-bordered my-2">
                 <tr>
-                    <th>Tour</th>
+                    <th>Tour Time</th>
+                    <th class="text-center">Tour Location</th>
                     <th class="text-center">Check in</th>
                 </tr>
                 <tbody>
@@ -13,11 +14,12 @@
                         <% if data.end_time > current_time %>
                             <tr>
                                 <td><%= data.display %></td>
+                                <td class="text-center"><%= data.location %></td>
                                 <td class="text-center">
                                     <% if checked_in? data.id %>
                                         Checked In
                                     <% else %>
-                                        <%= button_to "Check In", method: :post, tour_id: data.id %>
+                                        <%= button_to "Check In", {method: :post, tour_id: data.id} , {class: "btn btn-primary btn-sm rounded-2 shadow-none"} %>
                                     <% end %>
                                 </td>
                             </tr>

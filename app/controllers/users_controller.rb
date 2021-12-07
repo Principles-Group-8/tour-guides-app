@@ -161,17 +161,19 @@ class UsersController < ApplicationController
 
   def delete
     check_admin()
-    User.find(params[:id]).delete
+    @user = User.find(params[:id])
+    if @user.id == session[:user_id]
+      flash[:danger] = "You cannot delete yourself"
+      redirect_back(fallback_location: root_path)
+      return
+    end
+    @user.delete
     redirect_back(fallback_location: root_path)
   end
 
   def make_admin
     check_admin()
     @user = User.find(params[:id])
-    if @user == User.find(session[:user_id])
-      flash[:danger] = "You cannot revoke your own admin status"
-      redirect_back(fallback_location: root_path)
-    end
     @user.administrator = true
     @user.save
     redirect_back(fallback_location: root_path)
@@ -180,6 +182,11 @@ class UsersController < ApplicationController
   def revoke_admin
     check_admin()
     @user = User.find(params[:id])
+    if @user.id == session[:user_id]
+      flash[:danger] = "You cannot revoke your own admin status"
+      redirect_back(fallback_location: root_path)
+      return
+    end
     @user.administrator = false
     @user.save
     redirect_back(fallback_location: root_path)

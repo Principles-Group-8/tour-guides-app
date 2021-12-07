@@ -5,8 +5,8 @@ class TourMailer < ApplicationMailer
   #
   #   en.tour_mailer.tour_reminder.subject
   #
-  def tour_reminder
-    @tour = params[:tour]
+  def tour_reminder(tour)
+    @tour = tour
     @tour_time = @tour.time_display
 
     mail(

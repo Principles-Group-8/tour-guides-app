@@ -1,9 +1,13 @@
 <div class="container-fluid">
     <h1 class="text-center my-4">Guides on Tour</h1>
         <h4 class="text-center my-4"><%= @tour.display %></h4>
+        <h4 class="text-center my-4">Location: <%= @tour.location %></h4>
+        <% if @tour.note != "" %>
+            <h4 class="text-center my-4">Notes: <%= @tour.note %></h4>
+        <% end %>
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered my-2">
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
@@ -18,9 +22,9 @@
                             <td><%= user.email %></td>
                             <td class="text-center">
                                 <% if (@tour.checked_in_email.include? user.email) %>
-                                    Yes
+                                    Checked in
                                 <% else %>
-                                    <a href=<%= "/users/manual_check_in/#{user.id}/#{@tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
+                                    <a href=<%= "/users/manual_check_in/#{user.id}/#{@tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none" onclick="return confirm('Are you sure you want to check this user in?')">
                                     Check In
                                     </a>
                                 <% end %>

@@ -10,7 +10,7 @@ class ToursController < ApplicationController
         @tour = Tour.new(tour_params)
         @tour.end_time = @tour.time + params[:tour][:hours].to_i.hours
         @tour.save
-        TourMailer.with(tour: @tour).tour_reminder.deliver_later(wait_until: @tour.time - 1.day)
+        flash[:success] = "Tour Created"
         redirect_to tours_new_path
     end
 
