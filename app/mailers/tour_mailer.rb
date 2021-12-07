@@ -5,6 +5,8 @@ class TourMailer < ApplicationMailer
   #
   #   en.tour_mailer.tour_reminder.subject
   #
+
+  #Function to send an email
   def tour_reminder(tour)
     @tour = tour
     @tour_time = @tour.time_display

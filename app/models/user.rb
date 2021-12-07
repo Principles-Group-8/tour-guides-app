@@ -3,6 +3,7 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@vanderbilt.edu\z/, message: 'Invalid email' }
     has_and_belongs_to_many :tours
 
+    #Function to clear availability
     def clear_availability
         false_hash = {}
         ["mon", "tues", "wed", "thur", "fri", "sat", "sun"].each do |day|
@@ -16,6 +17,7 @@ class User < ApplicationRecord
           update(false_hash)
     end
 
+    #Function to determine if a user has any availability entered
     def has_availability
       ["mon", "tues", "wed", "thur", "fri", "sat", "sun"].each do |day|
         ["_9", "_9:30", "_10", "_10:30", "_11", 
@@ -30,10 +32,12 @@ class User < ApplicationRecord
       false
     end
 
+    #Function to properly display a user's name
     def name_display
       "#{first_name} #{last_name}"
     end
 
+    #Function to determine if a user is available for a certain time
     def is_available(times)
       times.each do |time|
         if !send(time)

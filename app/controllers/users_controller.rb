@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  #Function to store data with all users
   def points
     if !session[:user_id]
       redirect_to root_path
@@ -8,12 +9,14 @@ class UsersController < ApplicationController
     @data = User.all
   end
 
+  #Function to direct to correct rootpath based upon whether availability has been entered
   def availability
     if !session[:user_id] || !User.find(session[:user_id])
       redirect_to root_path
     end
   end
 
+  #Function to fill the availability part of database for a user
   def availability_post
     if !session[:user_id]
       redirect_to root_path
@@ -37,6 +40,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #Function to check in and update user's points if in the correct time
   def check_in_post
     if !session[:user_id]
       redirect_to root_path
@@ -55,6 +59,7 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  #Function to update user points if told to do so by an administrator
   def manual_check_in
     check_admin()
     @user = User.find(params[:user_id])
@@ -78,6 +83,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #Function to store user variable with a new user
   def new
     @user = User.new
   end
@@ -93,6 +99,7 @@ class UsersController < ApplicationController
     redirect_to login_path
   end
 
+  #Funciton to list all guides
   def list
     check_admin()
     User.all.each do |user|
@@ -107,6 +114,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #Function to reset all points
   def reset_points
     check_admin()
     User.all.each do |user|
@@ -116,6 +124,7 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  #Function to login
   def login_submit
     @user = User.find_by_email(params[:email])
     if !!@user && @user.authenticate(params[:password])
@@ -127,6 +136,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #Function to create a new user
   def create
     @user = User.new(user_params)
     if @user.save
@@ -139,6 +149,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #Function to remove a tour from the subboard
   def subboard_remove
     if !session[:user_id]
       redirect_to root_path
@@ -149,6 +160,7 @@ class UsersController < ApplicationController
     redirect_to users_subboard_path
   end 
 
+  #Function to claim a tour from the subboard
   def subboard_claim
     if !session[:user_id]
       redirect_to root_path
@@ -159,6 +171,7 @@ class UsersController < ApplicationController
     redirect_to users_subboard_path
   end
 
+  #Function to delete a user
   def delete
     check_admin()
     @user = User.find(params[:id])
@@ -171,6 +184,7 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  #Function to make a user an admin
   def make_admin
     check_admin()
     @user = User.find(params[:id])
@@ -179,6 +193,7 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  #Function to remove administrative priviledges from an admin
   def revoke_admin
     check_admin()
     @user = User.find(params[:id])
@@ -193,16 +208,19 @@ class UsersController < ApplicationController
   end
 
   private
+  #Function to check if a user is an admin
   def check_admin
     if !session[:user_id] || !User.find(session[:user_id]).administrator
         redirect_to root_path
     end
   end
 
+  #Function to fill a user with specified parameters
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
+  #Function to use the availability
   def availability_params
     params.permit(
       ["mon", "tues", "wed", "thur", "fri", "sat", "sun"].each do |day|

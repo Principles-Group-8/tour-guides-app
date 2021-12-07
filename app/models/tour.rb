@@ -1,22 +1,27 @@
 class Tour < ApplicationRecord
     has_and_belongs_to_many :users
 
+    #Function to display a date in the proper format
     def date_display
         "#{time.strftime('%A')} #{time.month}/#{time.day}"
     end
 
+    #Function to display a day in the proper format
     def day_display
         "#{time.strftime('%A')}"
     end
 
+    #Function to fully display a tour
     def display
         "#{time.strftime('%A')} #{time.month}/#{time.day} #{time.strftime('%-I:%M')} - #{end_time.strftime('%-I:%M %p')}"
     end
 
+    #Function to display a time in the proper format
     def time_display
         "#{time.strftime('%-I:%M %p')} - #{end_time.strftime('%-I:%M %p')}"
     end
 
+    #Function to display a tour details in the proper format
     def details_display
         s = "Location: #{location}"
         if !note.empty?
@@ -25,6 +30,7 @@ class Tour < ApplicationRecord
         s
     end
 
+    #Function to determine if a time is in the current day
     def today?
         time < current_time + 1.day
     end
@@ -33,6 +39,7 @@ class Tour < ApplicationRecord
         current_time
     end
 
+    #Function to properly format availability
     def availability
         case time.strftime('%A')
         when "Monday"
