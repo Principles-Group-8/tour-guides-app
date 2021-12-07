@@ -8,6 +8,8 @@ This app will be responsible for scheduling tours for Vanderbilt.
 We will be using the Ruby on Rails web framework with SQLite for 
 development and PostgreSQL for production.
 
+The app is available deployed to Heroku [here](https://tourguides-app.herokuapp.com/)
+
 To run the development server:
 1. Install the packages as listed in step 3.1 here (you might have to change to ruby version
 2.7.4): https://guides.rubyonrails.org/getting_started.html
