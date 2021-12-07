@@ -46,8 +46,6 @@ ul.navbar-nav a:hover {
         outline-style: solid;
         font-weight: bold;
         width: 14%;
-        min-width:230px;
-        height: 175px;
     }
     
     .prev-month{
@@ -100,8 +98,9 @@ ul.navbar-nav a:hover {
 
 .white-background {
     border: 15px solid white;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: white !important;
+    outline: 3px solid black;
 }
 
 .login-submission {
