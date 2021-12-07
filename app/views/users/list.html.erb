@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class="col-md-10 offset-md-1 my-2 white-background" id="guideTables">
-            <div class="d-flex justify-content-end my-3" style="width:100%">
+            <div class="d-flex justify-content-end my-3" style="width:100%;">
                 <%=button_to "Reset All Guides' Points", users_reset_points_path, method: :get, class: "btn btn-danger btn rounded-2 shadow-none", onclick: "return confirm('Are you sure you want to reset all points to 0?')"%>
             </div>
             <button class="myBtn btn btn-primary shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#allGuides" aria-expanded="true" aria-controls="allGuides">
@@ -15,9 +15,9 @@
             <button class="myBtn btn btn-primary shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#normalGuides" aria-expanded="false" aria-controls="normalGuides">
                 Non-Admin Users
             </button>
-            <div class="collapse show" id="allGuides" data-bs-parent="#guideTables" style="overflow-x:auto;">
+            <div class="collapse show" id="allGuides" data-bs-parent="#guideTables" style="overflow-x:auto; max-height:42vh;">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="position:sticky; top:-0.1%; box-shadow: inset 1px 1px #000, 0 1px #000;">
                         <tr>
                             <th>Guide Name</th>
                             <th>Guide Email</th>
@@ -71,9 +71,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="collapse" id="adminGuides" data-bs-parent="#guideTables" style="overflow-x:auto;">
+            <div class="collapse" id="adminGuides" data-bs-parent="#guideTables" style="overflow-x:auto; max-height:42vh;">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="position:sticky; top:-0.1%; box-shadow: inset 1px 1px #000, 0 1px #000;">
                         <tr>
                             <th>Guide Name</th>
                             <th>Guide Email</th>
@@ -127,9 +127,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="collapse" id="normalGuides" data-bs-parent="#guideTables" style="overflow-x:auto;">
+            <div class="collapse" id="normalGuides" data-bs-parent="#guideTables" style="overflow-x:auto; max-height:42vh;">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="position:sticky; top:-0.1%; box-shadow: inset 1px 1px #000, 0 1px #000;">
                         <tr>
                             <th>Guide Name</th>
                             <th>Guide Email</th>

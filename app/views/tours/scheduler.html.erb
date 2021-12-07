@@ -6,17 +6,19 @@
             <h3 class="text-center">
                 Weekly Tours
             </h3>
-            <table class="table table-bordered text-center">
-                <tbody>       
-                    <% Tour.order(:time).all.select{|tour| tour.weekly && tour.time > current_time}.each do |tour| %>
-                        <tr>
-                            <td>
-                                <%= tour.display %> (<%= tour.weeks %> weeks)
-                            </td>
-                        </tr> 
-                    <% end %>
-                </tbody>
-            </table>
+            <div style="max-height:50vh; overflow-x:auto;">
+                <table class="table table-bordered text-center">
+                    <tbody>       
+                        <% Tour.order(:time).all.select{|tour| tour.weekly && tour.time > current_time}.each do |tour| %>
+                            <tr>
+                                <td>
+                                    <%= tour.display %> (<%= tour.weeks %> weeks)
+                                </td>
+                            </tr> 
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
             <div class="text-center">
                 <%= button_to "Schedule", {method: :post}, {class: "btn btn-primary btn-sm rounded-2 shadow-none my-2"} %>
             </div>

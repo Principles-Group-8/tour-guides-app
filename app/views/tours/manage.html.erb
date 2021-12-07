@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class="col-md-8 offset-md-2 my-2 white-background" id="tourTables">
-            <div class="d-flex justify-content-end my-3" style="width:100%">
+            <div class="d-flex justify-content-end my-3" style="width:100%;">
                 <%=button_to "Delete All Tours", tours_delete_all_path, method: :get, class: "btn btn-danger btn rounded-2 shadow-none", onclick: "return confirm('Are you sure you want to delete all tours?')"%>
             </div>
             <button class="myBtn btn btn-primary shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#upcomingTours" aria-expanded="true" aria-controls="upcomingTours">
@@ -15,9 +15,9 @@
             <button class="myBtn btn btn-primary shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#weeklyTours" aria-expanded="false" aria-controls="weeklyTours">
                 Weekly Tours
             </button>
-            <div class="collapse show" id="upcomingTours" data-bs-parent="#tourTables" style="overflow-x:auto;">
+            <div class="collapse show" id="upcomingTours" data-bs-parent="#tourTables" style="overflow-x:auto; max-height:42vh;">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="position:sticky; top:-0.1%; box-shadow: inset 1px 1px #000, 0 1px #000;">
                         <tr>
                             <th>Tour Date</th>
                             <th>Tour Time</th>
@@ -56,9 +56,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="collapse" id="pastTours" data-bs-parent="#tourTables" style="overflow-x:auto;">
+            <div class="collapse" id="pastTours" data-bs-parent="#tourTables" style="overflow-x:auto; max-height:42vh;">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="position:sticky; top:-0.1%; box-shadow: inset 1px 1px #000, 0 1px #000;">
                         <tr>
                             <th>Tour Date</th>
                             <th>Tour Time</th>
@@ -97,9 +97,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="collapse" id="weeklyTours" data-bs-parent="#tourTables" style="overflow-x:auto;">
+            <div class="collapse" id="weeklyTours" data-bs-parent="#tourTables" style="overflow-x:auto; max-height:42vh;">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead style="position:sticky; top:-0.1%; box-shadow: inset 1px 1px #000, 0 1px #000;">
                         <tr>
                             <th>Tour Day</th>
                             <th>Tour Time</th>

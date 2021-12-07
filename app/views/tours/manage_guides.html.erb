@@ -6,48 +6,52 @@
         <h4 class="text-center my-4">Notes: <%= @tour.note %></h4>
     <% end %>
     <div class="row">
-        <div class="col-md-4 offset-md-1 mb-5 mb-lg-0 white-background">
+        <div class="col-md-4 offset-md-1 mb-5 mb-lg-0 col-white-background" style="max-height: 55vh;">
             <h3 class="text-center my-2">On Tour</h3>
-            <table class="table table-bordered text-center">
-                <tbody>
-                    <% @tour.users.order(:last_name).all.each do |user| %>
-                        <tr>
-                            <td>
-                                <%= user.name_display %>
-                            </td>
-                            <td>
-                                <a href=<%= "/tours/remove_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
-                                    Remove
-                                </a>
-                            </td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
+            <div class="overflow-auto" style="max-height:90%;">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                        <% @tour.users.order(:last_name).all.each do |user| %>
+                            <tr>
+                                <td>
+                                    <%= user.name_display %>
+                                </td>
+                                <td>
+                                    <a href=<%= "/tours/remove_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
+                                        Remove
+                                    </a>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
             <% if @tour.users.size == 0 %>
                 <h5 class="text-center">
                     There are no guides on this tour
                 </h5>
             <% end %>
         </div>
-        <div class="col-md-4 offset-md-2 mb-3 mb-lg-0 white-background">
+        <div class="col-md-4 offset-md-2 mb-3 mb-lg-0 col-white-background" style="max-height: 55vh;">
             <h3 class="text-center my-2">Not on Tour</h3>
-            <table class="table table-bordered text-center">
-                <tbody>
-                    <% User.order(:last_name).all.select{|user| !@tour.users.member?(user)}.each do |user| %>
-                        <tr>
-                            <td>
-                            <%= user.name_display %>
-                            </td>
-                            <td>
-                                <a href=<%= "/tours/add_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
-                                    Add
-                                </a>
-                            </td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
+            <div class="overflow-auto" style="max-height: 90%;">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                        <% User.order(:last_name).all.select{|user| !@tour.users.member?(user)}.each do |user| %>
+                            <tr>
+                                <td>
+                                <%= user.name_display %>
+                                </td>
+                                <td>
+                                    <a href=<%= "/tours/add_guide/#{@tour.id}/#{user.id}" %> class="btn btn-primary my-1 shadow-none">
+                                        Add
+                                    </a>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
             <% if User.all.select{|user| !@tour.users.member?(user)}.size == 0 %>
                 <h5 class="text-center">
                     All guides are assigned to this tour
