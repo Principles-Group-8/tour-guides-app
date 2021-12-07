@@ -5,15 +5,19 @@
 
     <div class="row">
         <div class="col-md-4 offset-md-1 mb-5 mb-lg-0">
-            <h3 class="text-center">
+            <h3 class="text-center my-2">
                 Your Tours
             </h3>
             <table class="table table-bordered text-center">
                 <tbody>
-                    <% cur_user.tours.order(:time).all.select {|tour| tour.end_time > current_time}.each do |tour| %>
+                    <% cur_user.tours.order(:time).all.select {|tour| tour.end_time > current_time && !tour.weekly}.each do |tour| %>
                         <tr>
                             <td>
                                 <%= tour.display %>
+                                at <%= tour.location %>
+                                <% if tour.note != "" %>
+                                    <br/> Notes: <%= tour.note %>
+                                <% end %>
                             </td>
                             <td>
                                 <a href=<%= "/users/subboard_remove/#{tour.id}" %> class="btn btn-primary my-1 shadow-none">
@@ -24,7 +28,7 @@
                     <% end %>
                 </tbody>
             </table>
-            <% if cur_user.tours.all.select{|tour| tour.end_time > current_time}.size == 0 %>
+            <% if cur_user.tours.all.select{|tour| tour.end_time > current_time && !tour.weekly}.size == 0 %>
                 <h5 class="text-center">
                     You have no currently assigned tours
                 </h5>
@@ -32,7 +36,7 @@
         </div>
 
         <div class="col-md-4 offset-md-2 mb-3 mb-lg-0">
-            <h3 class="text-center">
+            <h3 class="text-center my-2">
                 Available Tours
             </h3>
             <table class="table table-bordered text-center">
@@ -41,6 +45,10 @@
                         <tr>
                             <td>
                                 <%= tour.display %>
+                                at <%= tour.location %>
+                                <% if tour.note != "" %>
+                                    <br/> Notes: <%= tour.note %>
+                                <% end %>
                             </td>
                             <td>
                                 <a href=<%= "/users/subboard_claim/#{tour.id}" %> class="btn btn-primary my-1 shadow-none">
@@ -51,7 +59,7 @@
                     <% end %>
                 </tbody>
             </table>
-            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > current_time}.size == 0 %>
+            <% if Tour.all.select{|tour| tour.users.size < tour.min_guides && !tour.users.member?(cur_user) && tour.end_time > current_time && !tour.weekly}.size == 0 %>
                 <h5 class="text-center">
                     There are no tours currently available to claim
                 </h5>

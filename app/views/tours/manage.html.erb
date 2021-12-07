@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-center my-3">
             <%=button_to "Delete All Tours", tours_delete_all_path, method: :get, class: "btn btn-danger btn rounded-2 shadow-none", onclick: "return confirm('Are you sure you want to delete all tours?')"%>
         </div>
-        <div class="col-md-8 offset-md-2" id="tourTables">
+        <div class="col-md-8 offset-md-2 my-2" id="tourTables">
             <button class="myBtn btn btn-primary shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#upcomingTours" aria-expanded="true" aria-controls="upcomingTours">
                 Upcoming Tours
             </button>
@@ -21,6 +21,7 @@
                         <tr>
                             <th>Tour Date</th>
                             <th>Tour Time</th>
+                            <th >Location</th>
                             <th class="text-center">Manage Guides</th>
                             <th class="text-center">Delete Tour</th>
                         </tr>
@@ -33,6 +34,12 @@
                                 </td>
                                 <td>
                                     <%= tour.time_display %>
+                                </td>
+                                <td>
+                                    <%= tour.location %>
+                                    <% if tour.note!="" %>
+                                        Notes: <%= tour.note %>
+                                    <% end %>
                                 </td>
                                 <td class="text-center">
                                     <a href=<%= "/tours/manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
@@ -55,6 +62,7 @@
                         <tr>
                             <th>Tour Date</th>
                             <th>Tour Time</th>
+                            <th >Location</th>
                             <th class="text-center">View Guides</th>
                             <th class="text-center">Delete Tour</th>
                         </tr>
@@ -67,6 +75,12 @@
                                 </td>
                                 <td>
                                     <%= tour.time_display %>
+                                </td>
+                                <td>
+                                    <%= tour.location %>
+                                    <% if tour.note!="" %>
+                                        Notes: <%= tour.note %>
+                                    <% end %>
                                 </td>
                                 <td class="text-center">
                                     <a href=<%= "/tours/view_guides/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
@@ -89,6 +103,7 @@
                         <tr>
                             <th>Tour Day</th>
                             <th>Tour Time</th>
+                            <th >Location</th>
                             <th class="text-center">Number of Weeks</th>
                             <th class="text-center">Delete Tour</th>
                         </tr>
@@ -101,6 +116,12 @@
                                 </td>
                                 <td>
                                     <%= tour.time_display %>
+                                </td>
+                                <td>
+                                    <%= tour.location %>
+                                    <% if tour.note!="" %>
+                                        Notes: <%= tour.note %>
+                                    <% end %>
                                 </td>
                                 <td class="text-center">
                                     <%= tour.weeks %>

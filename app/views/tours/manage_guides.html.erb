@@ -1,9 +1,13 @@
 <div class="container-fluid">
     <h1 class="text-center my-4">Manage Guides</h1>
     <h4 class="text-center my-4"><%= @tour.display %></h4>
+    <h4 class="text-center my-4">Location: <%= @tour.location %></h4>
+    <% if @tour.note != "" %>
+        <h4 class="text-center my-4">Notes: <%= @tour.note %></h4>
+    <% end %>
     <div class="row">
         <div class="col-md-4 offset-md-1 mb-5 mb-lg-0">
-            <h3 class="text-center">On Tour</h3>
+            <h3 class="text-center my-2">On Tour</h3>
             <table class="table table-bordered text-center">
                 <tbody>
                     <% @tour.users.order(:last_name).all.each do |user| %>
@@ -27,7 +31,7 @@
             <% end %>
         </div>
         <div class="col-md-4 offset-md-2 mb-3 mb-lg-0">
-            <h3 class="text-center">Not on Tour</h3>
+            <h3 class="text-center my-2">Not on Tour</h3>
             <table class="table table-bordered text-center">
                 <tbody>
                     <% User.order(:last_name).all.select{|user| !@tour.users.member?(user)}.each do |user| %>
