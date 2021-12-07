@@ -4,7 +4,7 @@
 
   <% cur_user = User.find(session[:user_id]) %>
 
-    <div class="table" style="overflow-x:auto;padding:25px;background-color:white;border-radius:8px">
+    <div class="table white-background" style="overflow-x:auto">
       <%= month_calendar(events: cur_user.tours, attribute: :time) do |date, tours| %>
         <div>
           <%= date.day %>
