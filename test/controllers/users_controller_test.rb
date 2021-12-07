@@ -3,7 +3,7 @@ require "test_helper"
 class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get availability" do
     post login_url,
-      params: { email: "normal@mail.com", password: 'password' }
+      params: { email: "normal@vanderbilt.edu", password: 'password' }
     get users_availability_url
     assert_response :success
   end
@@ -15,7 +15,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get profile" do
     post login_url,
-      params: { email: "normal@mail.com", password: 'password' }
+      params: { email: "normal@vanderbilt.edu", password: 'password' }
     get users_profile_url
     assert_response :success
   end
@@ -27,7 +27,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get check_in" do
     post login_url,
-      params: { email: "normal@mail.com", password: 'password' }
+      params: { email: "normal@vanderbilt.edu", password: 'password' }
     get users_check_in_url
     assert_response :success
   end
@@ -39,7 +39,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get points" do
     post login_url,
-      params: { email: "normal@mail.com", password: 'password' }
+      params: { email: "normal@vanderbilt.edu", password: 'password' }
     get users_points_url
     assert_response :success
   end
@@ -51,7 +51,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get subboard" do
     post login_url,
-      params: { email: "normal@mail.com", password: 'password' }
+      params: { email: "normal@vanderbilt.edu", password: 'password' }
     get users_subboard_url
     assert_response :success
   end
@@ -65,9 +65,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get signup_url
     assert_response :success
     post signup_url,
-      params:  { user: { email: "test@mail.com", password:"password" } }
-    assert User.find_by_email("test@mail.com")
-    assert_not User.find_by_email("test@mail.com").administrator
+      params:  { user: { email: "test@vanderbilt.edu", password:"password" } }
+    assert User.find_by_email("test@vanderbilt.edu")
+    assert_not User.find_by_email("test@vanderbilt.edu").administrator
   end
 
   test "should error user email" do
@@ -78,34 +78,34 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should login user" do
     post login_url,
-      params: { email: "normal@mail.com", password: 'password' }
-    assert session[:user_id] == User.find_by_email("normal@mail.com").id
+      params: { email: "normal@vanderbilt.edu", password: 'password' }
+    assert session[:user_id] == User.find_by_email("normal@vanderbilt.edu").id
     get users_profile_url
     assert_response :success
   end
 
   test "should fail login" do
     post login_url,
-      params: { email: "normal@mail.com", password: "wrongpassword" }
+      params: { email: "normal@vanderbilt.edu", password: "wrongpassword" }
     assert_not session[:user_id]
   end
 
   test "should get list for administrator" do
     post login_url,
-      params: { email: "admin@mail.com", password: "password" }
-    get list_url
+      params: { email: "admin@vanderbilt.edu", password: "password" }
+    get users_list_url
     assert_response :success
   end
 
   test "should not get list for non-administrator" do
     post login_url,
-      params: { email: "normal@mail.com", password: "password" }
-    get list_url
+      params: { email: "normal@vanderbilt.edu", password: "password" }
+    get users_list_url
     assert_response :redirect
   end
 
 test "should not get list when not logged in" do
-    get list_url
+    get users_list_url
     assert_response :redirect
   end
 

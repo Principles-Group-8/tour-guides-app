@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2021_12_05_021242) do
     t.datetime "time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "end_time", default: "2021-11-10 06:45:19", null: false
-    t.integer "min_guides", null: false
+    t.datetime "end_time", default: "2021-11-12 00:49:39", null: false
+    t.integer "min_guides", default: 10
     t.string "location", default: "HOG", null: false
     t.string "note"
     t.boolean "weekly", default: false, null: false
