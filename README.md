@@ -1,7 +1,5 @@
 # README
-Justin Carway
-Joey Mathis
-Garrett Crumb
+Justin Carway, Joey Mathis, Garrett Crumb
 
 ## The Tour Guides Scheduling App - Group 8
 
