@@ -98,8 +98,9 @@ ul.navbar-nav a:hover {
 
 .white-background {
     border: 15px solid white;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: white !important;
+    outline: 3px solid black;
 }
 
 .login-submission {
