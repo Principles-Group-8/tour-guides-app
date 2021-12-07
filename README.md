@@ -13,8 +13,8 @@ The app is available deployed to Heroku [here](https://tourguides-app.herokuapp.
 To run the development server:
 1. Install the packages as listed in step 3.1 here (you might have to change to ruby version
 2.7.4): https://guides.rubyonrails.org/getting_started.html
-2. `Run $ bundle install`
-3. `Run $ rails db:migrate`
+2. Run `$ bundle install`
+3. Run `$ rails db:migrate`
 4. Run `$ rails webpacker:install` (enter "Y" at all file overwrite prompts if they occur)
 5. Run `$ rails server`
 6. Open http://localhost:3000
