@@ -7,32 +7,36 @@
         <% end %>
         <div class="row">
             <div class="col-md-4 offset-md-4 white-background">
-                <table class="table table-bordered my-2">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th class="text-center">
-                            Checked In?
-                        </th>
-                    </tr>
-                    <tbody>
-                        <% @tour.users.order(:last_name).each do |user| %>
-                        <tr>
-                            <td><%= user.name_display %></td>
-                            <td><%= user.email %></td>
-                            <td class="text-center">
-                                <% if (@tour.checked_in_email.include? user.email) %>
-                                    Checked in
-                                <% else %>
-                                    <a href=<%= "/users/manual_check_in/#{user.id}/#{@tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none" onclick="return confirm('Are you sure you want to check this user in?')">
-                                    Check In
-                                    </a>
-                                <% end %>
-                                </td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
+                <div style="overflow-x:auto; max-height:45vh;">
+                    <table class="table table-bordered my-2">
+                        <thead style="position:sticky; top:-0.1%; box-shadow: inset 1px 1px #000, 0 1px #000;">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th class="text-center">
+                                    Checked In?
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @tour.users.order(:last_name).each do |user| %>
+                            <tr>
+                                <td><%= user.name_display %></td>
+                                <td><%= user.email %></td>
+                                <td class="text-center">
+                                    <% if (@tour.checked_in_email.include? user.email) %>
+                                        Checked in
+                                    <% else %>
+                                        <a href=<%= "/users/manual_check_in/#{user.id}/#{@tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none" onclick="return confirm('Are you sure you want to check this user in?')">
+                                        Check In
+                                        </a>
+                                    <% end %>
+                                    </td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 </div>
