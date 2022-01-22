@@ -21,7 +21,8 @@
                         <tr>
                             <th>Tour Date</th>
                             <th>Tour Time</th>
-                            <th >Location</th>
+                            <th>Location</th>
+                            <th>Notes</th>
                             <th class="text-center">Manage Guides</th>
                             <th class="text-center">Delete Tour</th>
                         </tr>
@@ -37,9 +38,9 @@
                                 </td>
                                 <td>
                                     <%= tour.location %>
-                                    <% if tour.note!="" %>
-                                        Notes: <%= tour.note %>
-                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= tour.note %>
                                 </td>
                                 <td class="text-center">
                                     <a href=<%= "/tours/manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
@@ -62,7 +63,8 @@
                         <tr>
                             <th>Tour Date</th>
                             <th>Tour Time</th>
-                            <th >Location</th>
+                            <th>Location</th>
+                            <th>Notes</th>
                             <th class="text-center">View Guides</th>
                             <th class="text-center">Delete Tour</th>
                         </tr>
@@ -78,9 +80,9 @@
                                 </td>
                                 <td>
                                     <%= tour.location %>
-                                    <% if tour.note!="" %>
-                                        Notes: <%= tour.note %>
-                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= tour.note %>
                                 </td>
                                 <td class="text-center">
                                     <a href=<%= "/tours/view_guides/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
@@ -103,7 +105,8 @@
                         <tr>
                             <th>Tour Day</th>
                             <th>Tour Time</th>
-                            <th >Location</th>
+                            <th>Location</th>
+                            <th>Notes</th>
                             <th class="text-center">Number of Weeks</th>
                             <th class="text-center">Delete Tour</th>
                         </tr>
@@ -119,9 +122,9 @@
                                 </td>
                                 <td>
                                     <%= tour.location %>
-                                    <% if tour.note!="" %>
-                                        Notes: <%= tour.note %>
-                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= tour.note %>
                                 </td>
                                 <td class="text-center">
                                     <%= tour.weeks %>
