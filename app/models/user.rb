@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
     validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@vanderbilt.edu\z/, message: 'Invalid email' }
+    validates :first_name, presence: true
+    validates :last_name, presence: true
     has_and_belongs_to_many :tours
 
     #Function to clear availability

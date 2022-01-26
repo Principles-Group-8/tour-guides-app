@@ -143,6 +143,12 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = "Success"
       redirect_to users_availability_path
+    elsif @user.first_name == ""
+      flash.now[:danger] = "Please enter a first name"
+      render :new
+    elsif @user.last_name == ""
+      flash.now[:danger] = "Please enter a last name"
+      render :new
     else
       flash.now[:danger] = "Please enter a valid email"
       render :new
