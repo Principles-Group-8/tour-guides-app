@@ -71,8 +71,8 @@ class ToursController < ApplicationController
 
     #Function to perform the scheduling algorithm
     def scheduler_post
-        logger.debug("ENTERING SCHEDULING ALGO")
-        logger.debug()
+        #logger.debug("ENTERING SCHEDULING ALGO")
+        #logger.debug()
 
         tours = Tour.select{|tour| tour.weekly} #creating an array of all tours with weekly tag
         scheduler = Hash.new
@@ -86,16 +86,16 @@ class ToursController < ApplicationController
         admins = User.select{|admin| admin.administrator && admin.has_availability}
         guides = User.select{|guide| !guide.administrator && guide.has_availability}
 
-        logger.debug("ADMINS = ")
-        admins.each do |admin|
-            logger.debug(admin.email)
-        end
+        #logger.debug("ADMINS = ")
+        #admins.each do |admin|
+            #logger.debug(admin.email)
+        #end
 
-        logger.debug("GUIDES = ")
-        guides.each do |guide|
-            logger.debug(guide.email)
-        end
-        logger.debug()
+        #logger.debug("GUIDES = ")
+        #guides.each do |guide|
+            #logger.debug(guide.email)
+        #end
+        #logger.debug()
 
         #creating a hash where the key is an admin user and the value is the number of tours they're available for
         adminAvailability = Hash.new
@@ -113,11 +113,11 @@ class ToursController < ApplicationController
         adminAvailability.sort_by{|k, v| v}.each do |admin, _|
             tours.each do |tour|
                 if(admin.is_available(tour.availability) && scheduler[tour].length == 0)
-                    logger.debug("admin added is: ")
-                    logger.debug(admin.email)
+                    #logger.debug("admin added is: ")
+                    #logger.debug(admin.email)
 
-                    logger.debug("tour added to is: ")
-                    logger.debug(tour.display)
+                    #logger.debug("tour added to is: ")
+                    #logger.debug(tour.display)
 
                     scheduler[tour].push(admin)
                     admins.delete(admin)
@@ -126,19 +126,19 @@ class ToursController < ApplicationController
             end
         end
 
-        logger.debug("ADMINS ARE (should be none): ")
-        admins.each do |admin|
-            logger.debug(admin.email)
-        end
+        #logger.debug("ADMINS ARE (should be none): ")
+        #admins.each do |admin|
+            #logger.debug(admin.email)
+        #end
 
         #adding extra admins into normal guide pool
         guides = guides.concat(admins)
 
-        logger.debug("GUIDES ARE: ")
-        guides.each do |guide|
-            logger.debug(guide.email)
-        end
-        logger.debug()
+        #logger.debug("GUIDES ARE: ")
+        #guides.each do |guide|
+            #logger.debug(guide.email)
+        #end
+        #logger.debug()
 
         #creating a hash where the key is a tour and the value is the number of guides available for that tour
         tourAvailability = Hash.new
@@ -182,11 +182,11 @@ class ToursController < ApplicationController
                     if(guide.is_available(tour.availability))
                         scheduler[tour].push(guide)
 
-                        logger.debug("guide added is: ")
-                        logger.debug(guide.email)
+                        #logger.debug("guide added is: ")
+                        #logger.debug(guide.email)
 
-                        logger.debug("tour added to is: ")
-                        logger.debug(tour.display)
+                        #logger.debug("tour added to is: ")
+                        #logger.debug(tour.display)
 
                         guides.delete(guide)
                         guideAvailability.delete(guide)
@@ -200,9 +200,9 @@ class ToursController < ApplicationController
             end
         end
 
-        logger.debug()
-        logger.debug("ENTERING TOUR CREATION")
-        logger.debug()
+        #logger.debug()
+        #logger.debug("ENTERING TOUR CREATION")
+        #logger.debug()
 
         #creating all of the tours in the system
         tours.each do |tour|
@@ -214,13 +214,21 @@ class ToursController < ApplicationController
                 tempTour.end_time += week.weeks
                 tempTour.min_guides = scheduler[tour].length
                 tempTour.save
+                #logger.debug("TEMP TOUR INFO: ")
+                #logger.debug(tempTour.display)
+                #logger.debug("guide: ")
+                if(tempTour.users[0]) 
+                    #logger.debug(tempTour.users[0].email)
+                    tempTour.users = []
+                end
+                #logger.debug()
                 scheduler[tour].each do |guide|
                     tempTour.users.append(guide)
-                    logger.debug("Adding guide: ")
-                    logger.debug(guide.email)
+                    #logger.debug("Adding guide: ")
+                    #logger.debug(guide.email)
 
-                    logger.debug("Adding to tour: ")
-                    logger.debug(tour.display)
+                    #logger.debug("Adding to tour: ")
+                    #logger.debug(tour.display)
                 end
             end
             tour.delete
