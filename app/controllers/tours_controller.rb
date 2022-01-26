@@ -215,7 +215,7 @@ class ToursController < ApplicationController
                 tempTour.min_guides = scheduler[tour].length
                 tempTour.save
                 scheduler[tour].each do |guide|
-                    tempTour.users.append guide
+                    tempTour.users.append(guide)
                     logger.debug("Adding guide: ")
                     logger.debug(guide.email)
 
