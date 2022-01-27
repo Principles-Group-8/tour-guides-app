@@ -91,7 +91,10 @@
                                     <% end %>
                                 </td>
                                 <td>
-                                    <%= tour.note %>
+                                    <%= form_with url: "change_notes/#{tour.id}", method: :patch do |form| %>
+                                        <%= form.text_field :note, :size=>"6%", value: tour.note %>
+                                        <%= form.submit "Submit Edit", class: 'submit-edit' %>
+                                    <% end %>
                                 </td>
                                 <td class="text-center">
                                     <a href=<%= "/tours/view_guides/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
