@@ -7,9 +7,10 @@
                 <table class="table table-bordered my-2">
                     <thead style="position:sticky; top:0%; box-shadow: inset 1px 1px #000, 0 1px #000;">
                         <tr>
-                            <th>Tour Time</th>
+                            <th class="text-center">Tour Time</th>
                             <th class="text-center">Tour Location</th>
-                            <th class="text-center">Check in</th>
+                            <th class="text-center">Check In</th>
+                            <th class="text-center">Check In + No Tour</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,7 +23,14 @@
                                         <% if checked_in? data.id %>
                                             Checked In
                                         <% else %>
-                                            <%= button_to "Check In", {method: :post, tour_id: data.id} , {class: "btn btn-primary btn-sm rounded-2 shadow-none"} %>
+                                            <%= button_to "Check In", {method: :post, tour_id: data.id, tour_given: true} , {class: "btn btn-primary btn-sm rounded-2 shadow-none"} %>
+                                        <% end %>
+                                    </td>
+                                    <td class="text-center">
+                                        <% if checked_in? data.id %>
+                                            Checked In
+                                        <% else %>
+                                            <%= button_to "No Tour", {method: :post, tour_id: data.id, tour_give: false} , {class: "btn btn-primary btn-sm rounded-2 shadow-none"} %>
                                         <% end %>
                                     </td>
                                 </tr>

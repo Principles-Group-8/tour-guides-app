@@ -48,8 +48,10 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
     @tour = Tour.find(params[:tour_id])
     if @tour.time - 10*60 < current_time && @tour.time + 10*60 > current_time
-      @user.points = @user.points + 1
-      @user.save
+      if(params[:tour_given])
+        @user.points = @user.points + 1
+        @user.save
+      end
       @tour.checked_in_email << @user.email
       @tour.save
       flash[:success] = "Checked In"
