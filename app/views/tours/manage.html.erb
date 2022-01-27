@@ -19,10 +19,10 @@
                 <table class="table table-bordered">
                     <thead style="position:sticky; top:-0.1%; box-shadow: inset 1px 1px #000, 0 1px #000;">
                         <tr>
-                            <th>Tour Date</th>
-                            <th>Tour Time</th>
-                            <th>Location</th>
-                            <th>Notes</th>
+                            <th class="text-center">Tour Date</th>
+                            <th class="text-center">Tour Time</th>
+                            <th class="text-center">Location</th>
+                            <th class="text-center">Notes</th>
                             <th class="text-center">Manage Guides</th>
                             <th class="text-center">Delete Tour</th>
                         </tr>
@@ -30,17 +30,23 @@
                     <tbody>
                         <% Tour.order(:time).all.select{|tour| !tour.weekly && tour.end_time > current_time}.each do |tour| %>
                             <tr>
-                                <td>
+                                <td class="text-center">
                                     <%= tour.date_display %>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <%= tour.time_display %>
                                 </td>
                                 <td>
-                                    <%= tour.location %>
+                                    <%= form_with url: "change_location/#{tour.id}", method: :patch do |form| %>
+                                        <%= form.text_field :location, :size=>"6%", value: tour.location %>
+                                        <%= form.submit "Submit Edit", class: 'submit-edit' %>
+                                    <% end %>
                                 </td>
                                 <td>
-                                    <%= tour.note %>
+                                    <%= form_with url: "change_notes/#{tour.id}", method: :patch do |form| %>
+                                        <%= form.text_field :note, :size=>"6%", value: tour.note %>
+                                        <%= form.submit "Submit Edit", class: 'submit-edit' %>
+                                    <% end %>
                                 </td>
                                 <td class="text-center">
                                     <a href=<%= "/tours/manage/#{tour.id}" %> class="btn btn-primary btn-sm rounded-2 shadow-none">
@@ -79,7 +85,10 @@
                                     <%= tour.time_display %>
                                 </td>
                                 <td>
-                                    <%= tour.location %>
+                                    <%= form_with url: "change_location/#{tour.id}", method: :patch do |form| %>
+                                        <%= form.text_field :location, :size=>"6%", value: tour.location %>
+                                        <%= form.submit "Change Location" %>
+                                    <% end %>
                                 </td>
                                 <td>
                                     <%= tour.note %>
