@@ -44,7 +44,7 @@
                                 </td>
                                 <td>
                                     <%= form_with url: "change_notes/#{tour.id}", method: :patch do |form| %>
-                                        <%= form.text_field :note, :size=>"6%", value: tour.note %>
+                                        <%= form.text_field :note, :size=>"20%", value: tour.note %>
                                         <%= form.submit "Submit Edit", class: 'submit-edit' %>
                                     <% end %>
                                 </td>
@@ -92,7 +92,7 @@
                                 </td>
                                 <td>
                                     <%= form_with url: "change_notes/#{tour.id}", method: :patch do |form| %>
-                                        <%= form.text_field :note, :size=>"6%", value: tour.note %>
+                                        <%= form.text_field :note, :size=>"20%", value: tour.note %>
                                         <%= form.submit "Submit Edit", class: 'submit-edit' %>
                                     <% end %>
                                 </td>
