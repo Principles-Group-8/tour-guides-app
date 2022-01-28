@@ -66,8 +66,10 @@ class UsersController < ApplicationController
     check_admin()
     @user = User.find(params[:user_id])
     @tour = Tour.find(params[:tour_id])
-    @user.points = @user.points + 1
-    @user.save
+    if(params[:tour_given] == "true")
+      @user.points = @user.points + 1
+      @user.save
+    end
     @tour.checked_in_email << @user.email
     @tour.save
     redirect_back(fallback_location: root_path)
