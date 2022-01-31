@@ -39,7 +39,7 @@
                                 </td>
                                 <td class="text-center">
                                     <%= form_with url: "change_points/#{user.id}", method: :patch do |form| %>
-                                        <%= form.number_field :points, value: user.points %>
+                                        <%= form.number_field :points, value: user.points, class: 'points-field' %>
                                         <%= form.submit "Submit Edit", class: 'submit-edit' %>
                                     <% end %>
                                 </td>
