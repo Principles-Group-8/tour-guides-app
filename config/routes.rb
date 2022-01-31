@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'users/make_admin/:id', to: 'users#make_admin'
   get 'users/revoke_admin/:id', to: 'users#revoke_admin'
   get 'users/manual_check_in/:user_id/:tour_id/:tour_given', to: 'users#manual_check_in'
+  patch 'users/change_points/:id', to: 'users#change_points'
 
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'

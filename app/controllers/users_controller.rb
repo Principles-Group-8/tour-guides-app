@@ -87,6 +87,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_points
+    check_admin()
+    @user = User.find(params[:id])
+    @user.update_attribute(:points, params[:points])
+    redirect_to "/users/list/"
+end
+
   #Function to store user variable with a new user
   def new
     @user = User.new

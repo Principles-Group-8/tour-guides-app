@@ -38,7 +38,10 @@
                                     <%= user.email %>
                                 </td>
                                 <td class="text-center">
-                                    <%= user.points %>
+                                    <%= form_with url: "change_points/#{user.id}", method: :patch do |form| %>
+                                        <%= form.number_field :points, value: user.points %>
+                                        <%= form.submit "Submit Edit", class: 'submit-edit' %>
+                                    <% end %>
                                 </td>
                                 <td class="text-center">
                                     <%= user.absences %>
