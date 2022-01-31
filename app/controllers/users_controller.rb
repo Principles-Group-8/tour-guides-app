@@ -91,7 +91,7 @@ class UsersController < ApplicationController
     check_admin()
     @user = User.find(params[:id])
     @user.update_attribute(:points, params[:points])
-    redirect_to "/users/list/"
+    redirect_to root_path
 end
 
   #Function to store user variable with a new user
