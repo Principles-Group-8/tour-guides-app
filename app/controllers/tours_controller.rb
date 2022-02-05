@@ -97,9 +97,28 @@ class ToursController < ApplicationController
             scheduler[tour] = Array.new
         end
 
+        users = Array.new
+
+        params[:guides].each do |email|
+            @user = User.find_by_email(email)
+            users.push(@user)
+        end
+
+        if(users[0] == nil)
+            users.shift()
+        end
+
         #creating arrays for the admins and non-admins
-        admins = User.select{|admin| admin.administrator && admin.has_availability}
-        guides = User.select{|guide| !guide.administrator && guide.has_availability}
+        admins = Array.new
+        guides = Array.new
+
+        users.each do |user|
+            if(user.administrator && user.has_availability)
+                admins.push(user)
+            elsif(!user.administrator && user.has_availability)
+                guides.push(user)
+            end
+        end
 
         #logger.debug("ADMINS = ")
         #admins.each do |admin|
