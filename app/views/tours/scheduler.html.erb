@@ -25,7 +25,7 @@
             <div style="max-height:50vh; overflow-x:auto; border-style:solid;">
                 <div style="margin-left:5px">
                     <%= form_with url: "scheduler/", method: :post do |form| %>
-                        <%= form.collection_check_boxes(:guides, User.all, :email, :name_display) do |b| %>
+                        <%= form.collection_check_boxes(:guides, User.order(:last_name).all, :email, :name_display) do |b| %>
                             <br>
                             <%= b.label class:"label-checkbox" do%>
                             <%=b.check_box + b.text%>
