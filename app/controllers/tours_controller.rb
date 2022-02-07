@@ -81,6 +81,13 @@ class ToursController < ApplicationController
         redirect_to "/tours/manage/#{params[:tour_id]}"
     end
 
+    def change_num_guides
+        check_admin()
+        @tour = Tour.find(params[:id])
+        @tour.update_attribute(:min_guides, params[:num_guides])
+        redirect_to "/tours/manage/#{params[:tour_id]}"
+    end
+
     def scheduler
     end
 

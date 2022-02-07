@@ -23,6 +23,7 @@
                             <th class="text-center">Tour Time</th>
                             <th class="text-center">Location</th>
                             <th class="text-center">Notes</th>
+                            <th class="text-center">Num. of Guides</th>
                             <th class="text-center">Manage Guides</th>
                             <th class="text-center">Delete Tour</th>
                         </tr>
@@ -45,6 +46,12 @@
                                 <td>
                                     <%= form_with url: "change_notes/#{tour.id}", method: :patch do |form| %>
                                         <%= form.text_field :note, :size=>"20%", value: tour.note %>
+                                        <%= form.submit "Submit Edit", class: 'submit-edit' %>
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= form_with url: "change_num_guides/#{tour.id}", method: :patch do |form| %>
+                                        <%= form.number_field :num_guides, value: tour.min_guides, class: 'num-guides-field' %>
                                         <%= form.submit "Submit Edit", class: 'submit-edit' %>
                                     <% end %>
                                 </td>
