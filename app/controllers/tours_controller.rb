@@ -55,7 +55,7 @@ class ToursController < ApplicationController
         @tour = Tour.find(params[:tour_id])
         @user = User.find(params[:user_id])
         @tour.users.delete(@user)
-        redirect_to "/tours/manage/#{params[:tour_id]}"
+        redirect_back(fallback_location: root_path)
     end
 
     #Function for adding a guide to a tour
@@ -64,28 +64,28 @@ class ToursController < ApplicationController
         @tour = Tour.find(params[:tour_id])
         @user = User.find(params[:user_id])
         @tour.users.append @user
-        redirect_to "/tours/manage/#{params[:tour_id]}"
+        redirect_back(fallback_location: root_path)
     end
 
     def change_location
         check_admin()
         @tour = Tour.find(params[:id])
         @tour.update_attribute(:location, (params[:location]))
-        redirect_to "/tours/manage/#{params[:tour_id]}"
+        redirect_back(fallback_location: root_path)
     end
 
     def change_notes
         check_admin()
         @tour = Tour.find(params[:id])
         @tour.update_attribute(:note, params[:note])
-        redirect_to "/tours/manage/#{params[:tour_id]}"
+        redirect_back(fallback_location: root_path)
     end
 
     def change_num_guides
         check_admin()
         @tour = Tour.find(params[:id])
         @tour.update_attribute(:min_guides, params[:num_guides])
-        redirect_to "/tours/manage/#{params[:tour_id]}"
+        redirect_back(fallback_location: root_path)
     end
 
     def scheduler
