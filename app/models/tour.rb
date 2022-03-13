@@ -72,7 +72,14 @@ class Tour < ApplicationRecord
         #     end_num += 12
         # end
 
-        
+        if start_thirty
+            hour_num = start_num
+            if start_num > 12
+                hour_num -= 12
+            end
+            array << base + hour_num.to_s + ":30"
+            start_num += 1
+        end
         
         for hour in start_num..end_num do
             if hour > 12
@@ -84,14 +91,6 @@ class Tour < ApplicationRecord
             if hour != end_num || add_thirty
                 array << base + adj_hour.to_s + ":30"
             end
-        end
-
-        if start_thirty
-            if start_num > 12
-                start_num -= 12
-            end
-            array << base + start_num.to_s + ":30"
-            start_num += 1
         end
 
         array
