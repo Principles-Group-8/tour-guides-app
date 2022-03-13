@@ -87,6 +87,9 @@ class Tour < ApplicationRecord
         end
 
         if start_thirty
+            if start_num > 12
+                start_num -= 12
+            end
             array << base + start_num.to_s + ":30"
             start_num += 1
         end
