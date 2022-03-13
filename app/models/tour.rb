@@ -65,17 +65,14 @@ class Tour < ApplicationRecord
 
         end_num = end_time.strftime('%H').to_i
         add_thirty = end_time.strftime('%M').to_i > 30
-        if end_num < 9
-            end_num += 12
-        end
-        if start_num < 9
-            end_num += 12
-        end
+        # if end_num < 9
+        #     end_num += 12
+        # end
+        # if start_num < 9
+        #     end_num += 12
+        # end
 
-        if start_thirty
-            array << base + start_num.to_s + ":30"
-            start_num += 1
-        end
+        
         
         for hour in start_num..end_num do
             if hour > 12
@@ -87,6 +84,11 @@ class Tour < ApplicationRecord
             if hour != end_num || add_thirty
                 array << base + adj_hour.to_s + ":30"
             end
+        end
+
+        if start_thirty
+            array << base + start_num.to_s + ":30"
+            start_num += 1
         end
 
         array
