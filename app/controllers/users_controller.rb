@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     end
     @user = User.find(session[:user_id])
     @tour = Tour.find(params[:tour_id])
-    if @tour.time - 15*60 < current_time && @tour.time + 15*60 > current_time
+    if @tour.time - 10*60 < current_time && @tour.time + 10*60 > current_time
       if(params[:tour_given])
         @user.points = @user.points + 1
         @user.save
