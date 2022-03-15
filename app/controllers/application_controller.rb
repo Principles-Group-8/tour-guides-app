@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
 end
 def current_time
-    TZInfo::Timezone.get("US/Central").now
+    Time.now.utc - 5.hours
 end
