@@ -116,12 +116,13 @@ end
     User.all.each do |user|
       absences = 0
       user.tours.all.select {|tour| tour.end_time < current_time}.each do |tour|
+        logger.debug(tour.display)
         if (!tour.checked_in_email.include? user.email)
           absences = absences + 1
         end
-        user.absences = absences
-        user.save
       end
+      user.absences = absences
+      user.save
     end
   end
 
