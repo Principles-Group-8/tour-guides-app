@@ -21,9 +21,11 @@
                                     <% end %>
                                 </td>
                                 <td>
-                                    <a href=<%= "/users/subboard_remove/#{tour.id}" %> class="btn btn-primary my-1 shadow-none">
-                                        Post
-                                    </a>
+                                    <% if !tour.today? %>
+                                        <a href=<%= "/users/subboard_remove/#{tour.id}" %> class="btn btn-primary my-1 shadow-none">
+                                            Post
+                                        </a>
+                                    <% end %>
                                 </td>
                             </tr> 
                         <% end %>
@@ -32,7 +34,7 @@
             </div>
             <% if cur_user.tours.all.select{|tour| tour.end_time > current_time && !tour.weekly}.size == 0 %>
                 <h5 class="text-center">
-                    You have no currently assigned tours
+                    You have no assigned upcoming tours
                 </h5>
             <% end %>
         </div>
