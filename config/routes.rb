@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'users/subboard_claim/:tour_id', to: 'users#subboard_claim'
   get 'users/points'
   get 'users/check_in'
+  get 'users/password'
   post 'users/check_in', to: 'users#check_in_post'
   get 'users/list', to: 'users#list'
   get 'users/reset_points', to: 'users#reset_points'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
   get 'login', to: 'users#login'
   post 'login', to: 'users#login_submit'
   get 'logout', to: 'users#logout'
+  post 'password', to: 'users#update_password'
 
   get 'tours/new'
   post 'tours/create'

@@ -167,6 +167,17 @@ end
     end
   end
 
+  def update_password
+    @user1 = User.find_by_email(params[:email])
+    if @user1 && @user1.update_attribute(:password, params[:password])
+      flash.now[:success] = "Password has been changed!"
+      render :availability
+    else
+      flash.now[:danger] = "User not found. Please try again."
+      render :availability
+    end
+  end
+
   #Function to remove a tour from the subboard
   def subboard_remove
     if !session[:user_id]
