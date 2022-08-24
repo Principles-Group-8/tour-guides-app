@@ -209,7 +209,7 @@ end
       redirect_back(fallback_location: root_path)
       return
     end
-    @user.delete
+    @user.destroy
     redirect_back(fallback_location: root_path)
   end
 
