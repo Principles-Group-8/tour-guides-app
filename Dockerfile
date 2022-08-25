@@ -5,7 +5,7 @@ ADD https://nodejs.org/dist/v16.17.0/node-v16.17.0-linux-x64.tar.xz /tmp/node/no
 
 WORKDIR /tmp/node
 
-RUN tar -xvf node.tar.xz --strip-components=1
+RUN tar -xf node.tar.xz --strip-components=1
 
 RUN cp -r bin/* /usr/bin/
 
