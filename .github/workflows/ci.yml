@@ -36,3 +36,6 @@ jobs:
           tags: |
             ghcr.io/principles-group-8/tour-guides-app:latest
             ghcr.io/principles-group-8/tour-guides-app:${{ github.sha }}
+      - name: Call web hook 📞
+        run: |
+          curl "${{ secrets.AZURE_WEBHOOK }}" -H "" -d ""
