@@ -29,6 +29,8 @@ RUN rails webpacker:install
 
 VOLUME /app/db/sqllite
 
-EXPOSE 3000/tcp
+EXPOSE 8080/tcp
+
+ENV PORT=8080
 
 ENTRYPOINT bash entrypoint.sh
