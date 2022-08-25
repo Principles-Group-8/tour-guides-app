@@ -12,6 +12,9 @@ COPY sshd_config /etc/ssh/
 
 ADD https://nodejs.org/dist/v16.17.0/node-v16.17.0-linux-x64.tar.xz /tmp/node/node.tar.xz
 
+ENV NODE_ENV=production
+ENV RUBY_ENV=production
+
 WORKDIR /tmp/node
 
 RUN tar -xf node.tar.xz --strip-components=1
